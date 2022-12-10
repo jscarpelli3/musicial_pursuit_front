@@ -72,7 +72,7 @@ export default {
       this.user = payload
       this.handle = ''
       this.password = ''
-
+      this.$router.push(`/dashboard`)
     }
     // handleChange() {
     //   this[e.target.name] = e.target.value

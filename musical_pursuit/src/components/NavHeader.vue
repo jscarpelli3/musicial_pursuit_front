@@ -18,6 +18,9 @@
           <div>
             <router-link to="/logout">Logout</router-link>
           </div>
+          <div>
+            <router-link to="/register">Register New Player</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +57,7 @@ export default {
 .menu {
   font-family: 'Commissioner';
   font-size: 24px;
+  color: rgb(244, 244, 244);
 }
 
 .three-lines {

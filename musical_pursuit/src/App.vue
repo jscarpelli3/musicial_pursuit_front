@@ -7,7 +7,7 @@
       <div>
         <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
       </div>
-      <MainPage />
+      <MainPage :current_user="current_user" :authenticated="authenticated" />
       <GameMain />
     </div>
   </div>
@@ -20,6 +20,10 @@ import NavHeader from './components/NavHeader.vue'
 
 export default {
   name: 'App',
+  data: () => ({
+    current_user: {},
+    authenticated: false
+  }),
   components: {
     MainPage, GameMain, NavHeader
   }
