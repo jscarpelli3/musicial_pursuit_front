@@ -61,13 +61,11 @@ export default {
         top_ten.push(sorted_data[i])
       }
       this.leaders = top_ten
-      console.log(this.leaders)
     },
     handleFormChange(name, value) {
       this[name] = value
     },
     async handleLoginSubmit() {
-      console.log('blow me')
       const payload = await LoginUser(this.handle, this.password)
       this.current_user = payload
       this.handle = ''

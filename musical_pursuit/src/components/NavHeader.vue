@@ -8,19 +8,19 @@
       <div class="menu">
         <div v-if="active" class="menu">
           <div>
-            <router-link to="/">Home</router-link>
+            <router-link @click="toggle" to="/">Home</router-link>
           </div>
           <div>
-            <router-link to="/viewusers">View All Users</router-link>
+            <router-link @click="toggle" to="/viewusers">View All Users</router-link>
           </div>
           <div>
-            <router-link to="/dashboard" name="Dashboard">Dashboard</router-link>
+            <router-link @click="toggle" to="/dashboard" name="Dashboard">Dashboard</router-link>
           </div>
           <div>
-            <router-link to="/loggedout">Logout</router-link>
+            <router-link @click="toggle" to="/loggedout">Logout</router-link>
           </div>
           <div>
-            <router-link to="/register">Register New Player</router-link>
+            <router-link @click="toggle" to="/register">Register New Player</router-link>
           </div>
         </div>
       </div>
@@ -36,13 +36,14 @@
 export default {
   name: "NavHeader",
   data: () => ({
-    active: Boolean,
+    active: false,
     current_user: Object
   }),
   mounted() { },
   methods: {
     toggle() {
       this.active = !this.active
+      console.log(this.current_user.name)
     }
   },
   components: {}

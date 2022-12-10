@@ -1,8 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import MainPage from './components/MainPage'
 import GameMain from './components/GameMain'
-// import LoginPage from './components/LoginPage'
 import UserLanding from './components/UserLanding'
+import LoggedOut from './components/LoggedOut'
+import RegisterPage from './components/RegisterPage'
 
 
 const routes = [
@@ -10,7 +11,7 @@ const routes = [
   { path: '/loggedout', component: LoggedOut, name: LoggedOut },
   { path: '/dashboard', component: UserLanding, name: UserLanding },
   { path: '/game', component: GameMain, name: GameMain },
-  // { path: '/watchlist', component: WatchList, name: Watchlist }
+  { path: '/register', component: RegisterPage, name: RegisterPage },
 ]
 
 const router = createRouter({
