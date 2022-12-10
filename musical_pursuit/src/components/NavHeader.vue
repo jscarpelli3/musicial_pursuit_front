@@ -2,7 +2,7 @@
   <div>
     <div class="nav-div">
       <div>
-        <h3 class="greet-tag" v-if="current_user.handle">Hey {{ current_user.handle }}</h3>
+        <h3 class="greet-tag" v-if="current_user.handle">Hey {{ current_user.handle }}!</h3>
         <h3 class="greet-tag" v-else>Join the fun!</h3>
       </div>
       <div class="three-lines">
@@ -62,7 +62,7 @@ export default {
   margin: 1vw;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .greet-tag {
