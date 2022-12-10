@@ -26,44 +26,6 @@
           </tbody>
         </table>
       </div>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
-      <h1>RockDog Trivia.</h1>
       <UserLanding />
     </div>
   </div>

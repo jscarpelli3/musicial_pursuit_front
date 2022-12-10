@@ -7,7 +7,7 @@
           <input placeholder="enter your password" @input="handleChange" name="password" type="password" /><br />
         </div>
         <div class="login-button">
-          <button :disabled="!handle || !password"><img src="../assets/paw.png" /><br />login</button>
+          <button id="login-button" :disabled="!handle || !password"><img src="../assets/paw.png" /><br />login</button>
         </div>
       </div>
     </form>
@@ -63,10 +63,14 @@ input {
   width: 47vw;
   height: 3vh;
   box-shadow: 3px 3px 2px 1px rgba(97, 97, 97, 0.2);
-  border-radius: 3px;
+  border: 1px solid white;
+  border-radius: 2px;
+  margin: 1vh;
 }
 
-button {
+#login-button {
   box-shadow: 3px 3px 2px 1px rgba(97, 97, 97, 0.2);
+  border: 1px solid white;
+  border-radius: 2px;
 }
 </style>

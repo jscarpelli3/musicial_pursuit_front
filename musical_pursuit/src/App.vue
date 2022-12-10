@@ -3,9 +3,13 @@
     <header>
       <NavHeader />
     </header>
-    <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
-    <MainPage />
-    <GameMain />
+    <div class="main-area">
+      <div>
+        <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
+      </div>
+      <MainPage />
+      <GameMain />
+    </div>
   </div>
 </template>
 
@@ -28,7 +32,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: rgb(131, 131, 131);
+  background-color: rgb(135, 146, 157)
 }
 
 #app {
@@ -38,13 +42,13 @@ body {
   text-align: center;
   /* VUE green */
   /* color: #2c3e50; */
-  color: #000000;
+  color: #d6d6d6;
   /* margin-top: 60px; */
 }
 
 .rd-logo {
   width: 80vw;
-  shape-image-threshold: initial;
+  padding-top: 8vh;
 }
 
 header {
@@ -55,5 +59,15 @@ header {
   position: fixed;
   margin-bottom: 3vh;
   background-color: darkslategray;
+}
+
+/* .main-area {
+  margin-top: 60px;
+  margin-top: 5vh;
+} */
+
+a {
+  color: rgb(25, 25, 25);
+  text-decoration: none;
 }
 </style>
