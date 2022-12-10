@@ -1,6 +1,7 @@
 <template>
   <div class="nav-div">
     <div class="three-lines">
+      <h3 v-if="current_user.handle">Hey {{ current_user.handle }}</h3>
       <button id="nav-button" @click="toggle">
         <img src="../assets/menu-button-of-three-horizontal-lines.png" />
       </button>
@@ -16,7 +17,7 @@
             <router-link to="/dashboard" name="Dashboard">Dashboard</router-link>
           </div>
           <div>
-            <router-link to="/logout">Logout</router-link>
+            <router-link to="/loggedout">Logout</router-link>
           </div>
           <div>
             <router-link to="/register">Register New Player</router-link>
@@ -35,8 +36,8 @@
 export default {
   name: "NavHeader",
   data: () => ({
-    active: false,
-    current_user: ""
+    active: Boolean,
+    current_user: Object
   }),
   mounted() { },
   methods: {

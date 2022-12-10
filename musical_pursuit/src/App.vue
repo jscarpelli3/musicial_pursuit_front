@@ -1,23 +1,21 @@
 <template>
   <div>
     <header>
-      <NavHeader />
+      <NavHeader :current_user="current_user" />
     </header>
     <div class="main-area">
       <div>
         <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
       </div>
-      <MainPage />
-      <router-view :current_user="current_user" :authenticated="authenticated"></router-view>
+
+      <router-view :current_user="current_user" :authenticated="authenticated"
+        @handleLogOut="handleLogOut"></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage.vue'
-import GameMain from './components/GameMain.vue'
 import NavHeader from './components/NavHeader.vue'
-import LoggedOut from './components/LoggedOut.vue'
 
 export default {
   name: 'App',
@@ -26,7 +24,14 @@ export default {
     authenticated: false
   }),
   components: {
-    MainPage, GameMain, NavHeader, LoggedOut
+    NavHeader
+  },
+  methods: {
+    handleLogOut() {
+      this.current_user = {}
+      this.authenticated = false
+      localStorage.clear()
+    }
   }
 }
 </script>

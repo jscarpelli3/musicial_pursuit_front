@@ -3,7 +3,7 @@
     <div class="main">
       <div class="greeting">
         <h1>RockDog Trivia.</h1>
-        <h5>A place for competative trivia nerds and rock enthusiasts</h5>
+        <h4>A place for competative trivia nerds<br> and rock music enthusiasts</h4>
       </div>
       <div class="login">
         <LoginPage :handle="handle" :password="password" @handleFormChange="handleFormChange"
@@ -73,7 +73,8 @@ export default {
       this.handle = ''
       this.password = ''
       this.$router.push(`/dashboard`)
-    }
+    },
+
     // handleChange() {
     //   this[e.target.name] = e.target.value
     // },
