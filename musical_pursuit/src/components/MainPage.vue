@@ -122,8 +122,10 @@ export default {
 }
 
 table {
+  background-color: rgb(33, 51, 67);
   border: 1px solid black;
   box-shadow: 8px 8px 2px 1px rgba(97, 97, 97, 0.2);
+  border-radius: 3px;
 }
 
 th {

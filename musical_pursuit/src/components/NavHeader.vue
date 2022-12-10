@@ -1,13 +1,15 @@
 <template>
-  <div class="nav-div">
-    <div>
-      <h3 class="greet-tag" v-if="current_user.handle">Hey {{ current_user.handle }}</h3>
-      <h3 class="greet-tag" v-else>Join the fun!</h3>
-    </div>
-    <div class="three-lines">
-      <button id="nav-button" @click="toggle">
-        <img src="../assets/menu-button-of-three-horizontal-lines.png" />
-      </button>
+  <div>
+    <div class="nav-div">
+      <div>
+        <h3 class="greet-tag" v-if="current_user.handle">Hey {{ current_user.handle }}</h3>
+        <h3 class="greet-tag" v-else>Join the fun!</h3>
+      </div>
+      <div class="three-lines">
+        <button id="nav-button" @click="toggle">
+          <img src="../assets/menu-button-of-three-horizontal-lines.png" />
+        </button>
+      </div>
     </div>
     <div class="menu">
       <div v-if="active" class="menu">
@@ -60,6 +62,7 @@ export default {
   margin: 1vw;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .greet-tag {
@@ -70,7 +73,9 @@ export default {
 .menu {
   font-family: 'Commissioner';
   font-size: 24px;
+  text-align: right;
   color: rgb(244, 244, 244);
+  margin-right: 1vw;
 }
 
 .three-lines {
@@ -79,12 +84,15 @@ export default {
 
 img {
   width: 8vw;
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
 }
 
 #nav-button {
+  align-self: flex-end;
+  margin-left: auto;
   border: none;
   background-color: rgba(250, 235, 215, 0);
-  margin: 0;
-  padding: 0;
 }
 </style>
