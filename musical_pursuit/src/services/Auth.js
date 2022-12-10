@@ -18,6 +18,7 @@ export const CheckSession = async () => {
     const res = await Client.get('api/auth/session')
     return res.data
 }
+
 // export const LoginUser = async (handle, password) => {
 //   try {
 //     const data={handle:handle, password:password}

@@ -2,3 +2,7 @@ Freepik
 
 <a href="https://www.flaticon.com/free-icons/dog" title="dog icons">Dog icons created by Freepik - Flaticon</a>
 
+
+DROP DOWN MENU
+
+https://medium.com/@ronnow/dropdowns-in-vue-the-right-way-8ff9e8f36d4a

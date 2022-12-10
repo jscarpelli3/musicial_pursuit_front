@@ -44,7 +44,7 @@ export default {
   data: () => ({
     handle: '',
     password: '',
-    user: {},
+    current_user: {},
     leaders: []
   }),
   mounted() {
@@ -69,7 +69,7 @@ export default {
     async handleLoginSubmit() {
       console.log('blow me')
       const payload = await LoginUser(this.handle, this.password)
-      this.user = payload
+      this.current_user = payload
       this.handle = ''
       this.password = ''
       this.$router.push(`/dashboard`)
