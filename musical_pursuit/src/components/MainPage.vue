@@ -26,13 +26,13 @@
           </tbody>
         </table>
       </div>
-      <UserLanding />
+      <!-- <Dashboard /> -->
     </div>
   </div>
 </template>
 
 <script>
-import UserLanding from './UserLanding.vue'
+// import Dashboard from './Dashboard.vue'
 import LoginPage from './LoginPage.vue'
 import axios from 'axios'
 import { LoginUser } from '@/services/Auth';
@@ -105,7 +105,7 @@ export default {
     //   console.log(genreId);
     // }
   },
-  components: { LoginPage, UserLanding, }
+  components: { LoginPage }
 }
 </script>
 

@@ -1,16 +1,16 @@
 import Client from './api'
 
 export const LoginUser = async (hnd, pass) => {
-    console.log(hnd)
-    console.log(pass)
-    const data={handle:hnd, password:pass}
-    const res = await Client.post('/auth/login', data)
-    localStorage.setItem('token', res.data.token)
-    return res.data.res
+  const data={handle:hnd, password:pass}
+  const res = await Client.post('/auth/login', data)
+  localStorage.setItem('token', res.data.token)
+  return res.data.res
 }
 
 export const RegisterUser = async (data) => {
-    const res = await Client.post('api/auth/register', data)
+    console.log(data)
+    // const data = {hndle, pass, cty}
+    const res = await Client.post('/auth/register', data)
     return res.data
 }
 

@@ -40,13 +40,14 @@ export default {
     toggle() {
       this.registered = !this.registered
     },
-    async handleRegisterSubmit() {
+    async handleRegisterSubmit(e) {
+      e.preventDefault()
       console.log('Register Button')
       await RegisterUser({ handle: this.handle, password: this.password, city: this.city })
       this.handle = ''
       this.password = ''
       this.city = ''
-      this.$router.go(`/`)
+      this.$router.push(`/`)
     },
     goHome() {
 

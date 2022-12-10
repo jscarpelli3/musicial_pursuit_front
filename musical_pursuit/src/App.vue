@@ -7,8 +7,8 @@
       <div>
         <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
       </div>
-      <router-view :current_user="current_user" :authenticated="authenticated"
-        @handleLogOut="handleLogOut"></router-view>
+      <router-view :user_handle="current_user.handle" :user_city="current_user['city']" :user_id="current_user['id']"
+        :authenticated="authenticated" @handleLogOut="handleLogOut"></router-view>
     </div>
   </div>
 </template>
