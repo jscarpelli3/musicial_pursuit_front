@@ -66,8 +66,8 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-around;
+  /* display: flex;
+  justify-content: space-between; */
   width: 100vw;
   padding-top: 1vh;
   position: fixed;
