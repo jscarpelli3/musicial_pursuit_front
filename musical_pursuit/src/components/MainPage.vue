@@ -55,7 +55,6 @@ export default {
       const res = await axios.get(`http://localhost:3001/api/user`);
       let data = res.data
       let sorted_data = data.sort(({ total_score: a }, { total_score: b }) => b - a)
-      console.log(sorted_data)
       let top_ten = []
       for (let i = 0; i < 10; i++) {
         top_ten.push(sorted_data[i])
@@ -67,6 +66,7 @@ export default {
     },
     async handleLoginSubmit() {
       const payload = await LoginUser(this.handle, this.password)
+      this.$emit('setUser', payload)
       this.current_user = payload
       this.handle = ''
       this.password = ''

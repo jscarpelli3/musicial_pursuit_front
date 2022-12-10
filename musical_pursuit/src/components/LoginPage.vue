@@ -20,9 +20,11 @@
 
 export default {
   name: 'LoginPage',
-  data: () => ({
+  props: {
     handle: String,
     password: String,
+  },
+  data: () => ({
   }),
   components: {},
   methods: {

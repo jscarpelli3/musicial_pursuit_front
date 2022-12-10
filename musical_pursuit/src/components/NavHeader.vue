@@ -36,9 +36,11 @@
 export default {
   name: "NavHeader",
   data: () => ({
-    active: false,
-    current_user: Object
+    active: false
   }),
+  props: {
+    current_user: Object
+  },
   mounted() { },
   methods: {
     toggle() {

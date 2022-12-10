@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="usef-info">
+    <div class="user-info">
       <h1>{{ user_profile.handle }}</h1>
       <h1>{{ user_profile.city }}</h1>
       <h1>{{ user_profile.current_level }}</h1>
@@ -14,9 +14,12 @@ import axios from 'axios'
 
 export default {
   name: 'DashboardView',
-  data: () => ({
+  props: {
     user_city: String,
     user_handle: String,
+    user_id: Number
+  },
+  data: () => ({
     user_profile: {}
   }),
   components: {},
@@ -25,8 +28,9 @@ export default {
   },
   methods: {
     async getUserInfo() {
-      console.log(this.user_city)
-      const Id = this.current_user.id
+      const intId = this.user_id
+      const Id = intId.toString()
+      console.log(Id)
       const res = await axios.get(`http://localhost:3001/api/user/userbarked/${Id}`)
       console.log(res)
       this.user_profile = res.data
