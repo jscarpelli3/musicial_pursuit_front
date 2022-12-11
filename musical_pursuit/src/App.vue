@@ -45,7 +45,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: rgb(135, 146, 157)
 }
 
@@ -70,7 +70,7 @@ header {
   justify-content: space-between; */
   width: 100vw;
   padding-top: 1vh;
-  position: fixed;
+  /* position: fixed; */
   margin-bottom: 3vh;
   background-color: darkslategray;
 }

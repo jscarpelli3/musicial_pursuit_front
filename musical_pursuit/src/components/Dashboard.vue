@@ -11,12 +11,12 @@
       <h3 class="bark-header">See who is barking at you!</h3>
       <!-- <div v-if="has_barks"> -->
       <div class="temp">
-        <div class="barks-display" :key="bark.id" v-for="bark in barks">
-          <h4>Your competitor:{{ bark.handle }}</h4>
-          <h5>Their level:{{ bark.alltime_level }}</h5>
-          <h6>What they had to say to you:</h6>
-          <p>{{ bark.Bark.bark }}</p>
-        </div>
+        <!-- <div class="barks-display" :key="watch.id" v-for="watch in watchlist">
+          <h4>Your competitor:{{ watchlist.handle }}</h4>
+          <h5>Their level:{{ watchlist.total_score }}</h5> -->
+        <!-- <h6>What they had to say to you:</h6>
+          <p>{{ bark.Bark.bark }}</p> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -34,8 +34,8 @@ export default {
   },
   data: () => ({
     user_profile: {},
-    barks: [],
-    has_barks: false
+    watchlist: [],
+    has_watchlist: false
   }),
   components: {},
   mounted() {
@@ -45,11 +45,11 @@ export default {
     async getUserInfo() {
       const intId = this.user_id
       const Id = intId.toString()
-      const res = await axios.get(`http://localhost:3001/api/user/userbarked/${Id}`)
+      const res = await axios.get(`http://localhost:3001/api/user/userprof/${Id}`)
       console.log(res.data)
       this.user_profile = res.data
-      this.barks = res.data.barked
-      console.log(this.barks)
+      // this.watchlist = res.data.barked
+      // console.log(this.watchlist)
     }
   }
 }

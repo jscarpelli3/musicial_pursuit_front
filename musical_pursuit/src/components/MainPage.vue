@@ -2,7 +2,7 @@
   <div>
     <div class="main">
       <div class="greeting">
-        <h1>RockDog Trivia.</h1>
+        <h1>RockDog Trivia!</h1>
         <h4>A place for competative trivia nerds<br> and rock music enthusiasts</h4>
       </div>
       <div class="login">
