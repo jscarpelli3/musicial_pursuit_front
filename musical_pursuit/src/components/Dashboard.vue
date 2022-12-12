@@ -8,7 +8,13 @@
       <h2>Your Level: {{ user_profile.current_level }}</h2>
     </div>
     <div class="play-btn-div">
-      <button class="play-btn">PLAY NOW!</button>
+      <router-link to="game"><button class="play-btn">PLAY NOW!</button></router-link>
+    </div>
+    <div class="find-user">
+      <div class="find-user">
+        <router-link to="/viewusers"><button>View All Users</button></router-link>
+        <router-link to="/viewbarks"><button>View Your Barks</button></router-link>
+      </div>
     </div>
     <div class="user-watch">
       <h3 class="watch-header">Your watchlist:</h3>
@@ -132,8 +138,8 @@ export default {
 }
 
 .play-btn {
-  width: 30vw;
-  height: 7vh;
+  width: 80vw;
+  height: 8vh;
   background-color: rgb(244, 118, 28);
   text-shadow: 2px 1px 3px;
 }
@@ -151,6 +157,8 @@ export default {
 }
 
 button {
+  width: 40vw;
+  height: 5vh;
   background-color: rgba(227, 247, 247, 0.467);
   border-radius: 8px;
 }

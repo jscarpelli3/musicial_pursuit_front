@@ -22,27 +22,31 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'UserBarks',
-  props: {},
+  props: {
+    user_id: Number,
+    user_handle: String
+  },
   data: () => ({
     user_profile: {},
     barks: [],
     has_barks: false
   }),
   mounted() {
-    // getUserBarks()
+    this.getUserBarks()
   },
   methods: {
-    // async getUserBarks() {
-    //   const intId = this.user_id
-    //   const Id = intId.toString()
-    //   const res = await axios.get(`http://localhost:3001/api/userbarked/${Id}`)
-    //   console.log(res.data)
-    //   this.user_profile = res.data
-    //   this.barks = res.data.barked
-    //   console.log(this.barks)
-    // }
+    async getUserBarks() {
+      const intId = this.user_id
+      const Id = intId.toString()
+      const res = await axios.get(`http://localhost:3001/api/userbarked/${Id}`)
+      console.log(res.data)
+      this.user_profile = res.data
+      this.barks = res.data.barked
+      console.log(this.barks)
+    }
   }
 }
 </script>
