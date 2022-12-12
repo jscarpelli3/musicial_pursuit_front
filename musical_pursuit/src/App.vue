@@ -32,8 +32,8 @@ export default {
       localStorage.clear()
     },
     setUser(payload) {
-      console.log("this happened")
       this.current_user = payload
+      console.log(this.current_user)
       this.authenticated = true
     }
   }

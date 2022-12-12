@@ -9,6 +9,7 @@
         <LoginPage :handle="handle" :password="password" @handleFormChange="handleFormChange"
           @handleLoginSubmit="handleLoginSubmit" />
       </div>
+      <h3 v-if="login_fail">Login Failed</h3>
       <h3>Top10!</h3>
       <div class="top-10">
         <table class="leader-table">
@@ -45,7 +46,8 @@ export default {
     handle: '',
     password: '',
     current_user: {},
-    leaders: []
+    leaders: [],
+    login_fail: false
   }),
   mounted() {
     this.getLeaderBoard();
@@ -66,44 +68,21 @@ export default {
     },
     async handleLoginSubmit() {
       const payload = await LoginUser(this.handle, this.password)
-      this.$emit('setUser', payload)
-      this.current_user = payload
-      this.handle = ''
-      this.password = ''
-      this.$router.push(`/dashboard`)
-    },
-
-    // handleChange() {
-    //   this[e.target.name] = e.target.value
-    // },
-    // handleSubmit(e) {
-    //   e.preventDefault()
-    //   alert('Form Submitted')
-    //   this.handle = ''
-    //   this.password = ''
-    // }
-    // async getSearchResults(e) {
-    //   e.preventDefault();
-    //   const res = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${this.searchQuery}`);
-    //   this.searchResults = res.data.results;
-    //   console.log(this.searchResults);
-    //   if (this.searchResults) {
-    //     this.searched = true
-    //   }
-    //   console.log(res)
-    // },
-    // handleChange(event) {
-    //   this.searchQuery = event.target.value
-    //   console.log(event);
-    // },
-    // selectGame(gameId) {
-    //   this.$router.push(`/details/${gameId}`)
-    //   console.log(gameId);
-    // },
-    // selectGenre(genreId) {
-    //   this.$router.push(`/genre/${genreId}`)
-    //   console.log(genreId);
-    // }
+      console.log(payload)
+      if (payload) {
+        this.$emit('setUser', payload)
+        this.current_user = payload
+        this.handle = ''
+        this.password = ''
+        this.$router.push(`/dashboard`)
+      } else {
+        this.login_fail = true
+        this.handle = ''
+        this.password = ''
+        alert('Login Failed')
+        this.login_fail = false
+      }
+    }
   },
   components: { LoginPage }
 }
@@ -122,10 +101,11 @@ export default {
 }
 
 table {
-  background-color: rgb(33, 51, 67);
-  border: 1px solid black;
+  background-color: rgba(33, 51, 67, 0.529);
+  /* border: 1px solid black; */
   box-shadow: 8px 8px 2px 1px rgba(97, 97, 97, 0.2);
   border-radius: 3px;
+  padding: 2vh;
 }
 
 th {

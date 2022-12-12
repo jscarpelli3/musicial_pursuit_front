@@ -7,25 +7,28 @@
     <div class="user-stats">
       <h2>Your Level: {{ user_profile.current_level }}</h2>
     </div>
+    <div class="play-btn-div">
+      <button class="play-btn">PLAY NOW!</button>
+    </div>
     <div class="user-watch">
-      <h3 class="watch-header">See who is barking at you!</h3>
+      <h3 class="watch-header">Your watchlist:</h3>
       <div v-if="has_watchlist">
         <div class="temp">
           <div class="watch-display" :key="watch.id" v-for="watch in watchlist">
             <div class="comp-div">
               <h4 class="competitor-name"><b>Name: </b>{{ watch.handle }} </h4>
               <h5 class="competitor-score"><b></b>Their Score: {{ watch.total_score }} </h5>
-              <button>REMOVE FROM WATCHLIST</button>
+              <button @click="removeFromList(watch.id, user_id)">REMOVE FROM WATCHLIST</button>
             </div>
 
           </div>
         </div>
       </div>
       <div v-else class="user-watch">
-        <h3 class="watch-header">look like you're not watcing anyone yet</h3>
+        <h3 class="watch-header">look like you're not watching anyone yet</h3>
         <h4>Find some other players and watch their progress!</h4>
-        <div class="find-users">
-          <router-link @click="toggle" to="/viewusers">View All Users</router-link>
+        <div class="find-user">
+          <router-link to="/viewusers"><button>View All Users</button></router-link>
         </div>
         <!-- <button class="user-list-button">Find Users</button> -->
       </div>
@@ -33,7 +36,7 @@
     <div class="delete-yourself">
       <p>If you've had enough of RockDog trivia... go ahead and delete yourself. We'll be sad you
         left. But we still appreciate you playing!</p>
-      <button class="delete-profile-btn" @click="deleteUser">Delete Yourself</button>
+      <button class="delete-profile-btn" @click="deleteUser()">Delete Yourself</button>
     </div>
   </div>
 </template>
@@ -66,18 +69,25 @@ export default {
       const res = await axios.get(`http://localhost:3001/api/user/userprof/${Id}`)
       // console.log(res.data)
       this.user_profile = res.data
-      this.watchlist = res.data.watching
+      this.watchlist = res.data.being_watched
       console.log(this.user_profile)
       console.log(this.watchlist)
       if (this.watchlist.length > 0) {
         this.has_watchlist = true
+      } else {
+        this.has_watchlist = false
       }
+    },
+    async deleteUser() {
+      const intId = this.user_id
+      // const Id = intId.toString()
+      await Client.delete(`/user/${intId}`)
+      this.$router.push(`/bye`)
+    },
+    async removeFromList(being_watched, watcher) {
+      await Client.delete(`/user/${being_watched}/${watcher}`)
+      this.getUserInfo()
     }
-  },
-  async deleteUser() {
-    const intId = this.user_id
-    const Id = intId.toString()
-    await Client.delete(`/user/${Id}`)
   }
 }
 </script>
@@ -95,6 +105,11 @@ export default {
   justify-content: flex-start;
 }
 
+.watch-header {
+  margin: 2vh 0 3vh 0;
+  text-shadow: 2px 1px 3px black;
+}
+
 .delete-yourself {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -107,13 +122,20 @@ export default {
   grid-template-columns: 1fr/1fr;
 }
 
-/* .competitor-name,
-.competitor-score {
-  display: inline;
-} */
-
 .user-stats {
   margin: 2vh;
+}
+
+.play-btn-div {
+  margin: 2vh;
+  /* padding: 2vh */
+}
+
+.play-btn {
+  width: 30vw;
+  height: 7vh;
+  background-color: rgb(244, 118, 28);
+  text-shadow: 2px 1px 3px;
 }
 
 .user-barks {
@@ -128,8 +150,9 @@ export default {
   /* align-content: flex-start; */
 }
 
-.find-users {
-  background-color: rgb(227, 247, 247)))
+button {
+  background-color: rgba(227, 247, 247, 0.467);
+  border-radius: 8px;
 }
 
 .bark-header {
