@@ -20,7 +20,10 @@ export default {
     round_three: 150,
     question: "",
     cur_answer: "",
-    show_question: false
+    show_question: false,
+    record_labels: ["Interscope Records", "Capitol Records", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records"],
+    years: [],
+    album_titles: []
   }),
   mounted() {
     this.createQuestion(4)
@@ -46,14 +49,14 @@ export default {
       let questionType = Math.floor(Math.random() * questions)
       ///Determin syntax for question
       if (questionType === 0) {
-        this.questions = `What year was their album ${album} released?`
+        this.questions = `What year was their album "${album}" released?`
       } else if (questionType === 1) {
         this.question = `What album did ${artist} release in the year ${year}?`
       } else if (questionType === 2) {
-        this.question = `Was the album ${album} released as a full album or as a single?`
+        this.question = `Was the album "${album}"" released as a full album or as a single?`
       } else if (questionType === 3) {
         if (this.artistAlbumInfo.album[albumIdx].strLabel !== null) {
-          this.question = `What label was their album ${album} released on?`
+          this.question = `What label was their album "${album}" released on?`
         } else {
           this.createQuestion(3)
         }
