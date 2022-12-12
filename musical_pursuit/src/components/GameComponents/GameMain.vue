@@ -15,16 +15,16 @@
     <div v-else class="cur-artist">
       <h2>Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
       <img :src="artist_image_src" /><br />
-      <button class="go-btn" @click="start_round">GO!</button>
+      <button v-if="round === 0" class="go-btn" @click="start_round">GO!</button>
     </div>
     <div v-if="round === 1" class="round-one-q">
-      <Question :artistAlbumInfo="searchResults" />
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
     </div>
-    <div v-if="round === 2" class="round-one-q">
-      <Question :artistAlbumInfo="searchResults" />
+    <div v-if="round === 2" class="round-two-q">
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
     </div>
-    <div v-if="round === 3" class="round-one-q">
-      <Question :artistAlbumInfo="searchResults" />
+    <div v-if="round === 3" class="round-three-q">
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
     </div>
   </div>
 </template>
@@ -38,17 +38,21 @@ export default {
   name: 'GameMain',
   components: { Question },
   mounted() { },
+  props: [],
   data: () => ({
     searchQuery: "",
     artist_image_src: "",
     searchResults: {},
     searched: false,
-    round: 0
+    round: 0,
+    ses_score: 0,
+    level_up: 0
   }),
   methods: {
     async getAlbums(e) {
       e.preventDefault();
       const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
+      console.log(res.data)
       this.searchResults = res.data;
       this.searched = true
       this.makeImagePath()
@@ -64,7 +68,15 @@ export default {
     },
     start_round() {
       this.round++
+    },
+    correct(points, lvl) {
+      this.ses_score += points
+      this.level_up += lvl
+    },
+    incorrect() {
+
     }
+
   }
 }
 
