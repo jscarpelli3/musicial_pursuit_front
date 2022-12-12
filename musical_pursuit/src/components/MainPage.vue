@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async getLeaderBoard() {
-      const res = await axios.get(`http://localhost:3001/api/user`);
+      const res = await axios.get(`http://localhost:3001/api/user/users`);
       let data = res.data
       let sorted_data = data.sort(({ total_score: a }, { total_score: b }) => b - a)
       let top_ten = []

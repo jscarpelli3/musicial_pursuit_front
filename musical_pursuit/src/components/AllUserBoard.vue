@@ -1,35 +1,35 @@
 <template>
   <div>
+    <h1>The Player Roster</h1>
+    <div class="all-users" :key="user.id" v-for="user in users"></div>
+    <UserBoardUser :handle="user.handle" :city="user.city" :level="user.current_level" :comp_id="user.id"
+      :score="user.total_score" />
   </div>
 </template>
 
 <script>
+import UserBoardUser from './UserBoardUser.vue';
+import axios from 'axios'
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: "AllUserBoard",
+  data: () => ({
+    users: []
+  }),
+  mounted() {
+    this.getUsers();
   },
-  methods: {}
+  methods: {
+    async getUsers() {
+      const res = await axios.get(`http://localhost:3001/api/user/users`);
+      this.users = res;
+    }
+  },
+  components: { UserBoardUser }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
