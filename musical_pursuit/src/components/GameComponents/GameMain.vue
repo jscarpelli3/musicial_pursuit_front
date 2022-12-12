@@ -1,48 +1,97 @@
 <template>
   <div>
-
+    <div v-if="round === 0" class="game-details">
+      <h1 class="headline">Get your rock brain ready!</h1>
+      <p class="game-ex">RockDog Trivia works in rounds of 3 quetsions.<br />Search an rock or pop artist you think you
+        know, then answer 3 questions about their discography. Each question gets you points. If you answer all 3
+        correct you will increase your level. </p>
+    </div>
+    <div v-if="!searched" class="search">
+      <form @submit="getAlbums">
+        <input placeholder="Search Term" @change="handleChange" :value="searchQuery" name="search" type="text" />
+        <button>Search</button>
+      </form>
+    </div>
+    <div v-else class="cur-artist">
+      <h2>Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
+      <img :src="artist_image_src" /><br />
+      <button class="go-btn" @click="start_round">GO!</button>
+    </div>
+    <div v-if="round === 1" class="round-one-q">
+      <Question :artistAlbumInfo="searchResults" />
+    </div>
+    <div v-if="round === 2" class="round-one-q">
+      <Question :artistAlbumInfo="searchResults" />
+    </div>
+    <div v-if="round === 3" class="round-one-q">
+      <Question :artistAlbumInfo="searchResults" />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 const API_KEY = process.env.VUE_APP_AUDIODB_KEY
+import Question from './Question.vue'
 
 export default {
   name: 'GameMain',
-  components: {},
+  components: { Question },
   mounted() { },
-  async getAlbums() {
-      const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=metallica`);
-      this.genres = res;
-      console.log(res.data)
+  data: () => ({
+    searchQuery: "",
+    artist_image_src: "",
+    searchResults: {},
+    searched: false,
+    round: 0
+  }),
+  methods: {
+    async getAlbums(e) {
+      e.preventDefault();
+      const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
+      this.searchResults = res.data;
+      this.searched = true
+      this.makeImagePath()
+    },
+    handleChange(event) {
+      this.searchQuery = event.target.value
+    },
+    async makeImagePath() {
+      // const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
+      // console.log(res.data)
+      // this.artist_image_src = res.data.artists[0].strArtistLogo
+      console.log('placehold console log')
+    },
+    start_round() {
+      this.round++
     }
-    // async getSearchResults(e) {
-    //   e.preventDefault();
-    //   const res = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${this.searchQuery}`);
-    //   this.searchResults = res.data.results;
-    //   console.log(this.searchResults);
-    //   if (this.searchResults) {
-    //     this.searched = true
-    //   }
-    //   console.log(res)
-    // },
-    // handleChange(event) {
-    //   this.searchQuery = event.target.value
-    //   console.log(event);
-    // },
-    // selectGame(gameId) {
-    //   this.$router.push(`/details/${gameId}`)
-    //   console.log(gameId);
-    // },
-    // selectGenre(genreId) {
-    //   this.$router.push(`/genre/${genreId}`)
-    //   console.log(genreId);
-    // }
   }
+}
 
 </script>
 
 <style>
+.game-details {
+  margin: 2vh 4vw;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
+  border-radius: 10px;
+  background-color: rgba(240, 255, 255, 0.195);
+  padding: 2vw;
+}
 
+.go-btn {
+  width: 60vw;
+  height: 6vh;
+  background-color: rgb(244, 118, 28);
+  text-shadow: 2px 1px 3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 </style>

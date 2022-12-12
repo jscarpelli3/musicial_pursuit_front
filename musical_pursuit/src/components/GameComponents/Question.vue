@@ -1,22 +1,17 @@
 <template>
   <div>
-    <h2>Logged Out</h2>
-    <router-link to='/'>Back to Main Page</router-link>
+    <h2></h2>
+    <router-link to='/'></router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoggedOut',
-  props: {},
-  mounted() {
-    this.logout();
+  name: 'QuestionCard',
+  props: {
+    artistAlbumInfo: Object
   },
-  methods: {
-    logout() {
-      this.$emit('handleLogOut')
-    }
-  }
+  mounted() { },
 }
 </script>
 

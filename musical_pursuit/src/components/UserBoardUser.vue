@@ -45,9 +45,9 @@ export default {
 .user-table {
   display: grid;
   grid-template: 1fr 1fr 1fr/1fr 1fr 1fr 1fr;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 2vw;
-  box-shadow: 3px 3px 2px rgb(0, 0, 0);
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.407);
   border-radius: 17px;
   background-color: rgba(240, 255, 255, 0.195);
 }
@@ -67,8 +67,11 @@ export default {
 }
 
 .add-btn {
-  border-radius: 17px;
-  box-shadow: 2px 2px 3px rgb(0, 0, 0);
+  width: 40vw;
+  height: 5vh;
+  background-color: rgba(227, 247, 247, 0.467);
+  border-radius: 8px;
+  margin-bottom: 2vh;
 }
 
 /* .user {
