@@ -6,3 +6,5 @@ Freepik
 DROP DOWN MENU
 
 https://medium.com/@ronnow/dropdowns-in-vue-the-right-way-8ff9e8f36d4a
+
+https://blog.boot.dev/javascript/how-to-create-a-custom-checkbox-form-in-vue/

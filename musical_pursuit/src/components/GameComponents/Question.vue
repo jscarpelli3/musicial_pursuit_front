@@ -1,50 +1,82 @@
 <template>
   <div>
     <h2>Round {{ roundNum }} </h2>
-    <div v-if="show_question" class="printed-question-div">
-      <p class="printed-question">{{ question }}</p>
-      <div v-if="q_type === 0">
-        <form>
-          <label>{{}}</label>
-          <input type="radio" v-model="pick" :value="first" />
-          <label></label>
-          <input type="radio" v-model="pick" :value="first" />
-          <label></label>
-          <input type="radio" v-model="pick" :value="first" />
-          <label></label>
-          <input type="radio" v-model="pick" :value="first" />
-        </form>
+    <div class="game-space">
+      <div v-if="show_question" class="printed-question-div">
+        <!-- <div v-if="show_question" class="printed-question-div">
+        <p class="printed-question">{{ question }}</p>
+        <div class="question" v-if="q_type === 0">
+          <h3 class="choice">you chose:{{ pick[0] }}</h3>
+          <form>
+            <label>{{ years[0] }}</label>
+            <input type="checkbox" v-model="pick1" id="years1" :value="years[0]" :disabled="pick.length > 0" /><br />
+            <label>{{ years[1] }}</label>
+            <input type="checkbox" v-model="pick2" id="years1" :value="years[1]" :disabled="pick.length > 0" /><br />
+            <label>{{ years[2] }}</label>
+            <input type="checkbox" v-model="pick3" id="years2" :value="years[2]" :disabled="pick.length > 0" /><br />
+            <label>{{ years[3] }}</label>
+            <input type="checkbox" v-model="pick4" id="years3" :value="years[3]" :disabled="pick.length > 0" /><br />
+          </form>
+        </div>
+        <div class="question" v-if="q_type === 1">
+          <h3 class="choice">you chose:{{ pick[0] }}</h3>
+          <form>
+            <label>Choose</label>
+            <input type="checkbox" v-model="pick" id="0" value="{{album_titles[0]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>Choose</label>
+            <input type="checkbox" v-model="pick" id="3" value="{{album_titles[1]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>Choose</label>
+            <input type="checkbox" v-model="pick" id="2" value="{{album_titles[2]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>Choose</label>
+            <input type="checkbox" v-model="pick" id="t" value="{{album_titles[3]}}"
+              :disabled="pick.length > 0" /><br />
+          </form>
+        </div>
+        <div class="question" v-if="q_type === 2">
+          <h3 class="choice">you chose:{{ pick[0] }}</h3>
+          <form>
+            <label>Single</label>
+            <input type="checkbox" v-model="pick" id="Single" value="Single" :disabled="pick.length > 0" /><br />
+            <label>Album</label>
+            <input type="checkbox" v-model="pick" id="Album" value="Album" :disabled="pick.length > 0" /><br />
+            <label>Neither</label>
+            <input type="checkbox" v-model="pick" id="Neither" value="Neither" :disabled="pick.length > 0" /><br />
+          </form>
+        </div>
+        <div class="question" v-if="q_type === 3">
+          <h3 class="choice">you chose:{{ pick[0] }}</h3>
+          <form>
+            <label>{{ current_labels[0] }}</label>
+            <input type="checkbox" v-model="pick" id="current_labels[0]" value="{{current_labels[0]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>{{ current_labels[1] }}</label>
+            <input type="checkbox" v-model="pick" id="current_labels[1]" value="{{current_labels[1]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>{{ current_labels[2] }}</label>
+            <input type="checkbox" v-model="pick" id="current_labels[2]" value="{{current_labels[2]}}"
+              :disabled="pick.length > 0" /><br />
+            <label>{{ current_labels[3] }}</label>
+            <input type="checkbox" v-model="pick" id=" current_labels[3]" value="{{current_labels[3]}}"
+              :disabled="pick.length > 0" /><br />
+          </form> -->
+        <!-- </div> -->
+        <div class="answer-options">
+          <p class="printed-question">{{ question }}</p>
+          <label v-for="(answer, i) in answers" :key="i" class="ans-choice">
+            {{ answer }}<br />
+            <input :id="answer" v-model="checked" type="checkbox" @change="onChange(answer)" />
+          </label>
+          <button @click="checkAnswer">Submit Answer</button>
+        </div>
       </div>
-      <div v-if="q_type === 1">
-        <form>
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-        </form>
-      </div>
-      <div v-if="q_type === 2">
-        <form>
-          <input type="radio" v-model="pick" :value="Single" />
-          <input type="radio" v-model="pick" :value="Album" />
-          <input type="radio" v-model="pick" :value="Neither" />
-        </form>
-      </div>
-      <div v-if="q_type === 3">
-        <form>
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-        </form>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-// import { number } from 'prop-types'
 
 export default {
   name: 'QuestionCard',
@@ -54,14 +86,19 @@ export default {
     roundNum: Number
   },
   data: () => ({
-    q_type: 9,
+    checked: [],
+    answers: [],
+    chosen_answer: "",
+    pick: [],
+    q_type: 0,
     round_one: 50,
     round_two: 100,
     round_three: 150,
     question: "",
     cur_answer: "",
     show_question: false,
-    record_labels: ["Interscope Records", "Capitol Records", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records"],
+    possible_labels: ["Interscope Records", "Capitol Records", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records"],
+    current_labels: [],
     years: [],
     album_titles: [],
     choices_record_labels: [],
@@ -71,13 +108,23 @@ export default {
     this.createQuestion(4)
   },
   methods: {
-    coreectAns(value1, value2) {
+    onChange(answer) {
+      this.chosen_answer = answer
+      console.log(this.chosen_answer)
+      console.log(this.checked)
+    },
+    correctAns(value1, value2) {
       this.$emit('correct', value1, value2)
     },
     incorrectAns() {
       this.$emit('incorrect')
     },
     checkAnswer() {
+      if (this.cur_answer === this.chosen_answer) {
+        this.correctAns()
+      } else {
+        this.incorrectAns()
+      }
       console.log('check answer')
     },
     createQuestion(questions) {
@@ -95,15 +142,20 @@ export default {
       let questionType = Math.floor(Math.random() * questions)
       ///Determin syntax for question
       if (questionType === 0) {
-        this.questions = `What year was their album "${album}" released?`
+        console.log('what year')
+        this.question = `What year was their album "${album}" released?`
       } else if (questionType === 1) {
+        console.log('what album')
         this.question = `What album did ${artist} release in the year ${year}?`
       } else if (questionType === 2) {
         this.question = `Was the album "${album}"" released as a full album or as a single?`
+        console.log('album or single')
       } else if (questionType === 3) {
         if (this.artistAlbumInfo.album[albumIdx].strLabel !== null) {
+          console.log('label question')
           this.question = `What label was their album "${album}" released on?`
         } else {
+          console.log('no label info')
           this.createQuestion(3)
         }
       }
@@ -113,18 +165,21 @@ export default {
       }
     },
     showQuestion(type, albumIndex) {
-      console.log(albumIndex)
-      console.log(type)
+      ///ALBUM YEARS QUESTION
       if (type === 0) {
+        this.answers = []
+        console.log('question type 0')
         let artistStart = parseInt(this.artistStartYr)
-        let years = [artistStart]
+        let releaseYr = parseInt(this.artistAlbumInfo.album[albumIndex].intYearReleased)
+        let years = [releaseYr]
+        this.cur_answer = releaseYr
         let yrDiff = 2022 - artistStart
         const randYear = () => {
           let num = Math.floor(Math.random() * yrDiff)
           if (years.includes(num)) {
             randYear()
           } else {
-            years.push(num)
+            years.push(num + artistStart)
           }
         }
         for (let i = 0; i < 3; i++) {
@@ -132,16 +187,68 @@ export default {
         }
         for (let i = 0; i < 4; i++) {
           let num = Math.floor(Math.random() * years.length)
-          this.years.push(years[num])
+          this.answers.push(years[num])
           years.splice(num, 1)
         }
-        console.log(years)
+        console.log(this.years)
+        ///ALBUM TITLES QUESTION
       } else if (type === 1) {
+        this.answers = []
         console.log('question type 1')
+        ///transfer album info from data to function-local
+        let albums = this.artistAlbumInfo.album
+        console.log(albums)
+        ///create temp array for 4 album titles
+        let albumTitles = []
+        ///include the correct answer
+        albumTitles.push(albums[albumIndex].strAlbum)
+        ///set the answer in data
+        this.cur_answer = albums[albumIndex].strAlbum
+        ///remove answer from all available artist albums
+        albums.splice(albumIndex, 1)
+        ///do a loop to add a random album to the temp albums array
+        for (let i = 0; i < 3; i++) {
+          let num = Math.floor(Math.random() * albums.length)
+          albumTitles.push(albums[num].strAlbum)
+          albums.splice(num, 1)
+        }
+        console.log(this.artistAlbumInfo.album)
+        ///randomly send one of the 4 album titles to the answer array
+        for (let i = 0; i < 4; i++) {
+          let num = Math.floor(Math.random() * albumTitles.length)
+          this.answers.push(albumTitles[num])
+          albumTitles.splice(num, 1)
+        }
+        ///ALBUM SINGLE QUESTION
       } else if (type === 2) {
+        this.answers = []
         console.log('question type 2')
+        ///simply set the current answer to the release format in the chosen album record
+        this.cur_answer = this.artistAlbumInfo.album[albumIndex].strReleaseFormat
+        this.answers.push("single")
+        this.answers.push("album")
+        this.answers.push("neither")
+        ///ALBUM LABEL QUESTION
       } else if (type === 3) {
+        this.answers = []
         console.log('question type 3')
+        ///set answer
+        this.cur_answer = this.artistAlbumInfo.album[albumIndex].strLabel
+        ///add answer to answer choices
+        let pre_current_labels = []
+        pre_current_labels.push(this.artistAlbumInfo.album[albumIndex].strLabel)
+        ///add three wrong answers
+        for (let i = 0; i < 3; i++) {
+          let num = Math.floor(Math.random() * this.possible_labels.length - 1)
+          pre_current_labels.push(this.possible_labels[num])
+          this.possible_labels.splice(num, 1)
+        }
+        ///randomly choose from the previous array to place in final answers array
+        for (let i = 0; i < 4; i++) {
+          let num = Math.floor(Math.random() * pre_current_labels.length)
+          this.answers.push(pre_current_labels[num])
+          pre_current_labels.splice(num, 1)
+        }
       }
       this.q_type = type
     }
@@ -151,5 +258,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.game-space {
+  display: flex;
+  justify-content: center;
+  margin: 2vw;
+}
 
+.answer-options>input:checked {
+
+  background-color: rgb(146, 146, 146);
+}
+
+/* checkbox>input:checked {
+} */
+
+.question,
+.answer-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+  background-color: rgba(105, 105, 105, 0.247);
+  padding: 1vh 2vw 1vh 2vw;
+  border-radius: 8px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
+}
+
+button {
+  background-color: rgb(244, 118, 28);
+  border-radius: 4px;
+  height: 4vh;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
+  margin: 2vh
+}
 </style>

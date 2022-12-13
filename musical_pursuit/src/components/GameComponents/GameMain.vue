@@ -13,7 +13,7 @@
       </form>
     </div>
     <div v-else class="cur-artist">
-      <h2>Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
+      <h2 v-if="round === 0">Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
       <img class="artist-logo" :src="artist_image_src" /><br />
       <button v-if="round === 0" class="go-btn" @click="start_round">GO!</button>
     </div>
