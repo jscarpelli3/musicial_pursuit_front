@@ -8,9 +8,14 @@
     </div>
     <div v-if="!searched" class="search">
       <form @submit="getAlbums">
-        <input placeholder="Search Term" @change="handleChange" :value="searchQuery" name="search" type="text" />
+        <input placeholder="Search Term" @change="handleChange" :value="searchQuery" name="search" type="text"
+          :disabled="search_fail" />
         <button>Search</button>
       </form>
+      <div v-if="search_fail">
+        <h2>Invaldi Artist Name!</h2>
+        <button @click="toggleSearchFail">Click to search again</button>
+      </div>
     </div>
     <div v-else class="cur-artist">
       <h2 v-if="round === 0">Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
@@ -60,6 +65,7 @@ export default {
     artist_start_yr: "",
     searchResults: {},
     searched: false,
+    search_fail: false,
     round: 0,
     ses_score: 0,
     level_up: 0
@@ -71,10 +77,14 @@ export default {
     async getAlbums(e) {
       e.preventDefault();
       const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
-      // console.log(res.data)
-      this.searchResults = res.data;
-      this.searched = true
-      this.makeImagePath()
+      console.log(res.data)
+      if (res.data.album === null) {
+        this.search_fail = true
+      } else {
+        this.searchResults = res.data;
+        this.searched = true
+        this.makeImagePath()
+      }
     },
     handleChange(event) {
       this.searchQuery = event.target.value
@@ -124,8 +134,11 @@ export default {
       console.log(this.user.alltime_level)
       console.log(this.user.current_level)
       console.log(this.user.id)
+    },
+    toggleSearchFail() {
+      this.searchQuery = ''
+      this.search_fail = false
     }
-
   }
 }
 
