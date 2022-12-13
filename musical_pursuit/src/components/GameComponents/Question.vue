@@ -25,17 +25,17 @@
       </div>
       <div v-if="q_type === 2">
         <form>
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
-          <input type="radio" v-model="pick" :value="first" />
+          <input type="radio" v-model="pick" :value="Single" />
+          <input type="radio" v-model="pick" :value="Album" />
+          <input type="radio" v-model="pick" :value="Neither" />
         </form>
       </div>
       <div v-if="q_type === 3">
         <form>
-          <input type="radio" v-model="pick" :value="Single" />
-          <input type="radio" v-model="pick" :value="Album" />
-          <input type="radio" v-model="pick" :value="Neither" />
+          <input type="radio" v-model="pick" :value="first" />
+          <input type="radio" v-model="pick" :value="first" />
+          <input type="radio" v-model="pick" :value="first" />
+          <input type="radio" v-model="pick" :value="first" />
         </form>
       </div>
 
@@ -114,6 +114,7 @@ export default {
     },
     showQuestion(type, albumIndex) {
       console.log(albumIndex)
+      console.log(type)
       if (type === 0) {
         let artistStart = parseInt(this.artistStartYr)
         let years = [artistStart]
