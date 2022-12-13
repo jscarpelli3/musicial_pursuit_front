@@ -83,6 +83,7 @@ export default {
       const res = await axios.get(`http://localhost:3001/api/user/userprof/${Id}`)
       console.log(this.user_handle)
       this.user_profile = res.data
+      this.$emit('setUser', this.user_profile)
       this.watchlist = res.data.being_watched
       console.log(this.user_profile)
       if (this.watchlist.length > 0) {

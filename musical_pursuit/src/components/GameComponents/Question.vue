@@ -239,9 +239,10 @@ export default {
         console.log('question type 2')
         ///simply set the current answer to the release format in the chosen album record
         this.cur_answer = this.artistAlbumInfo.album[albumIndex].strReleaseFormat
-        this.answers.push("single")
-        this.answers.push("album")
-        this.answers.push("neither")
+        this.answers.push("Single")
+        this.answers.push("Album")
+        this.answers.push("Other")
+        this.answers.push("Compilation")
         ///ALBUM LABEL QUESTION
       } else if (type === 3) {
         this.answers = []

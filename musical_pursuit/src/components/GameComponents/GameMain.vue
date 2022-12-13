@@ -97,15 +97,15 @@ export default {
       this.submit_scores()
       this.start_round()
     },
-    incorrect(points) {
-      this.ses_score -= points
+    incorrect() {
+      this.ses_score -= 50
       this.submit_scores()
       this.round = 100
     },
     async submit_scores() {
       const newTotal = parseInt(this.user.total_score) + this.ses_score
       const newLvl = parseInt(this.user.current_level) + this.level_up
-      let newAllTime = parseInt(this.user.alltime_level)
+      let newAllTime = 3
       let newSesScore = parseInt(this.user.high_ses_score)
       if (parseInt(this.user.alltime_level) < newLvl) {
         console.log(newAllTime)
@@ -115,7 +115,7 @@ export default {
         console.log(newSesScore)
         newSesScore = newTotal
       }
-      const newStats = { current_level: newLvl.toString(), total_score: newTotal.toString(), alltime_lvl: newAllTime.toString(), high_ses_score: newSesScore.toString() }
+      const newStats = { current_level: newLvl, total_score: newTotal, alltime_level: newAllTime, high_ses_score: newSesScore }
       await Client.put(`/user/${this.user.id}`, newStats)
     },
     printStats() {
