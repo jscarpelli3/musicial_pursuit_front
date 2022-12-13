@@ -14,17 +14,20 @@
     </div>
     <div v-else class="cur-artist">
       <h2>Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
-      <img :src="artist_image_src" /><br />
+      <img class="artist-logo" :src="artist_image_src" /><br />
       <button v-if="round === 0" class="go-btn" @click="start_round">GO!</button>
     </div>
     <div v-if="round === 1" class="round-one-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
+        :artistStartYr="artist_start_yr" />
     </div>
     <div v-if="round === 2" class="round-two-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
+        :artistStartYr="artist_start_yr" />
     </div>
     <div v-if="round === 3" class="round-three-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round" />
+      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
+        :artistStartYr="artist_start_yr" />
     </div>
   </div>
 </template>
@@ -42,6 +45,7 @@ export default {
   data: () => ({
     searchQuery: "",
     artist_image_src: "",
+    artist_start_yr: "",
     searchResults: {},
     searched: false,
     round: 0,
@@ -61,9 +65,11 @@ export default {
       this.searchQuery = event.target.value
     },
     async makeImagePath() {
-      // const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
-      // console.log(res.data)
-      // this.artist_image_src = res.data.artists[0].strArtistLogo
+      const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
+      console.log(res.data)
+      console.log('making image path')
+      this.artist_start_yr = res.data.artists[0].intFormedYear
+      this.artist_image_src = res.data.artists[0].strArtistLogo
       console.log('placehold console log')
     },
     start_round() {
@@ -105,5 +111,9 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+.artist-logo {
+  width: 90vw;
 }
 </style>

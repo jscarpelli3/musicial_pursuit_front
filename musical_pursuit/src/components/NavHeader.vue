@@ -12,23 +12,25 @@
       </div>
     </div>
     <div class="menu">
-      <div v-if="active" class="menu">
-        <div>
-          <router-link @click="toggle" to="/">Home</router-link>
+      <Transition>
+        <div v-if="active" class="menu">
+          <div>
+            <router-link @click="toggle" to="/">Home</router-link>
+          </div>
+          <div>
+            <router-link @click="toggle" to="/viewusers">View All Users</router-link>
+          </div>
+          <div>
+            <router-link @click="toggle" to="/dashboard" name="Dashboard">Dashboard</router-link>
+          </div>
+          <div>
+            <router-link @click="toggle" to="/loggedout">Logout</router-link>
+          </div>
+          <div>
+            <router-link @click="toggle" to="/register">Register New Player</router-link>
+          </div>
         </div>
-        <div>
-          <router-link @click="toggle" to="/viewusers">View All Users</router-link>
-        </div>
-        <div>
-          <router-link @click="toggle" to="/dashboard" name="Dashboard">Dashboard</router-link>
-        </div>
-        <div>
-          <router-link @click="toggle" to="/loggedout">Logout</router-link>
-        </div>
-        <div>
-          <router-link @click="toggle" to="/register">Register New Player</router-link>
-        </div>
-      </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -94,5 +96,18 @@ img {
   margin-left: auto;
   border: none;
   background-color: rgba(250, 235, 215, 0);
+}
+
+.v-enter-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-leave-active {
+  transition: opacity 0.1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
