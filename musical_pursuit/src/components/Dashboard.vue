@@ -2,13 +2,13 @@
   <div class="profile-space">
     <div class="user-info">
       <h1>{{ user_profile.handle }}</h1>
-      <h3>{{ user_profile.city }}</h3>
+      <h4>from:{{ user_profile.city }}</h4>
     </div>
     <div class="user-stats">
-      <h2>Your Level: {{ parseInt(user_profile.current_level) }}</h2>
-      <h2>Your Level: {{ parseInt(user_profile.alltime_level) }}</h2>
-      <h2>Your Level: {{ parseInt(user_profile.high_ses_score) }}</h2>
-      <h2>Your Level: {{ parseInt(user_profile.total_score) }}</h2>
+      <h4>Current Level: {{ parseInt(user_profile.current_level) }}</h4>
+      <h4>All Time Level: {{ parseInt(user_profile.alltime_level) }}</h4>
+      <h4>High Session Score: {{ parseInt(user_profile.high_ses_score) }}</h4>
+      <h3>Total Score: {{ parseInt(user_profile.total_score) }}</h3>
     </div>
     <div class="play-btn-div">
       <router-link to="game"><button class="play-btn">PLAY NOW!</button></router-link>
@@ -81,11 +81,10 @@ export default {
       const intId = this.user_id
       const Id = intId.toString()
       const res = await axios.get(`http://localhost:3001/api/user/userprof/${Id}`)
-      // console.log(res.data)
+      console.log(this.user_handle)
       this.user_profile = res.data
       this.watchlist = res.data.being_watched
       console.log(this.user_profile)
-      console.log(this.watchlist)
       if (this.watchlist.length > 0) {
         this.has_watchlist = true
       } else {
@@ -131,7 +130,8 @@ export default {
   padding-bottom: 2vh;
 }
 
-.watch-display {
+.watch-display,
+.user-stats {
   display: grid;
   grid-template-columns: 1fr/1fr;
   margin: 2vh 4vw 2vh 4vw;

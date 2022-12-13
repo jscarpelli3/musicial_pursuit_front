@@ -18,16 +18,26 @@
       <button v-if="round === 0" class="go-btn" @click="start_round">GO!</button>
     </div>
     <div v-if="round === 1" class="round-one-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
-        :artistStartYr="artist_start_yr" />
+      <Question :user="user" :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect"
+        :roundNum="round" :artistStartYr="artist_start_yr" />
     </div>
     <div v-if="round === 2" class="round-two-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
-        :artistStartYr="artist_start_yr" />
+      <Question :user="user" :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect"
+        :roundNum="round" :artistStartYr="artist_start_yr" />
     </div>
     <div v-if="round === 3" class="round-three-q">
-      <Question :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect" :roundNum="round"
-        :artistStartYr="artist_start_yr" />
+      <Question :user="user" :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect"
+        :roundNum="round" :artistStartYr="artist_start_yr" />
+    </div>
+    <div v-if="round === 50" class="round-three-q">
+      <h1>You leveled up!</h1>
+      <h3>This round you scored {{ ses_score }}!</h3>
+      <button @click="this.$router.push(`/dashboard`)">Back To You Dashboard</button>
+    </div>
+    <div v-if="round === 100" class="round-three-q">
+      <h1>Sorry, wrong answer!</h1>
+      <h3>You Lose 50 points!</h3>
+      <button @click="this.$router.push(`/dashboard`)">Back To You Dashboard</button>
     </div>
   </div>
 </template>
@@ -36,12 +46,14 @@
 import axios from 'axios'
 const API_KEY = process.env.VUE_APP_AUDIODB_KEY
 import Question from './Question.vue'
+import Client from '../../services/api'
 
 export default {
   name: 'GameMain',
   components: { Question },
-  mounted() { },
-  props: [],
+  props: {
+    user: Object
+  },
   data: () => ({
     searchQuery: "",
     artist_image_src: "",
@@ -52,11 +64,14 @@ export default {
     ses_score: 0,
     level_up: 0
   }),
+  mounted() {
+    this.printStats()
+  },
   methods: {
     async getAlbums(e) {
       e.preventDefault();
       const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
-      console.log(res.data)
+      // console.log(res.data)
       this.searchResults = res.data;
       this.searched = true
       this.makeImagePath()
@@ -66,21 +81,49 @@ export default {
     },
     async makeImagePath() {
       const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
-      console.log(res.data)
-      console.log('making image path')
       this.artist_start_yr = res.data.artists[0].intFormedYear
       this.artist_image_src = res.data.artists[0].strArtistLogo
-      console.log('placehold console log')
     },
     start_round() {
-      this.round++
+      if (this.round < 3) {
+        this.round++
+      } else {
+        this.round = 50
+      }
     },
     correct(points, lvl) {
       this.ses_score += points
       this.level_up += lvl
+      this.submit_scores()
+      this.start_round()
     },
     incorrect(points) {
       this.ses_score -= points
+      this.submit_scores()
+      this.round = 100
+    },
+    async submit_scores() {
+      const newTotal = parseInt(this.user.total_score) + this.ses_score
+      const newLvl = parseInt(this.user.current_level) + this.level_up
+      let newAllTime = parseInt(this.user.alltime_level)
+      let newSesScore = parseInt(this.user.high_ses_score)
+      if (parseInt(this.user.alltime_level) < newLvl) {
+        console.log(newAllTime)
+        newAllTime = newLvl
+      }
+      if (parseInt(this.user.high_ses_score) < this.ses_score) {
+        console.log(newSesScore)
+        newSesScore = newTotal
+      }
+      const newStats = { current_level: newLvl.toString(), total_score: newTotal.toString(), alltime_lvl: newAllTime.toString(), high_ses_score: newSesScore.toString() }
+      await Client.put(`/user/${this.user.id}`, newStats)
+    },
+    printStats() {
+      console.log(this.user.high_ses_score)
+      console.log(this.user.total_score)
+      console.log(this.user.alltime_level)
+      console.log(this.user.current_level)
+      console.log(this.user.id)
     }
 
   }

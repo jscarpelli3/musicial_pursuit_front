@@ -77,13 +77,15 @@
 </template>
 
 <script>
-
 export default {
   name: 'QuestionCard',
   props: {
+    // current_user: Object,
+    user: Object,
     artistAlbumInfo: Object,
     artistStartYr: String,
-    roundNum: Number
+    roundNum: Number,
+    lvl_up: Number
   },
   data: () => ({
     checked: [],
@@ -113,21 +115,33 @@ export default {
       console.log(this.chosen_answer)
       console.log(this.checked)
     },
-    correctAns(value1, value2) {
-      this.$emit('correct', value1, value2)
+    correctAns(score, lvl) {
+      this.$emit('correct', score, lvl)
     },
     incorrectAns() {
       this.$emit('incorrect')
     },
     checkAnswer() {
+      let lvl = 0
+      let score = 0
+      if (this.roundNum === 1) {
+        score = this.round_one
+      } else if (this.roundNum === 2) {
+        score = this.round_two
+      } else if (this.roundNum === 3) {
+        lvl = 1
+        score = this.round_three
+      }
+      console.log(score)
       if (this.cur_answer === this.chosen_answer) {
-        this.correctAns()
+        this.correctAns(score, lvl)
       } else {
         this.incorrectAns()
       }
       console.log('check answer')
     },
     createQuestion(questions) {
+      console.log(this.user)
       ///establish data for question
       ///generate random numbers to choose data
       ///artist name

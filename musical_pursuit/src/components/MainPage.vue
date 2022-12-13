@@ -27,7 +27,6 @@
           </tbody>
         </table>
       </div>
-      <!-- <Dashboard /> -->
     </div>
   </div>
 </template>

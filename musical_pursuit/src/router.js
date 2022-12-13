@@ -13,8 +13,8 @@ import ByePage from './components/ByePage'
 const routes = [
   { path: '/', component: MainPage, name: MainPage },
   { path: '/loggedout', component: LoggedOut, name: LoggedOut },
-  { path: '/dashboard', component: Dashboard, name: Dashboard },
-  { path: '/game', component: GameMain, name: GameMain },
+  { path: '/dashboard', component: Dashboard, name: Dashboard, props:true },
+  { path: '/game', component: GameMain, name: GameMain, props:true },
   { path: '/register', component: RegisterPage, name: RegisterPage },
   { path: '/viewusers', component: AllUserBoard, name: AllUserBoard },
   { path: '/user_user', component: UserBoardUser, name: UserBoardUser },
