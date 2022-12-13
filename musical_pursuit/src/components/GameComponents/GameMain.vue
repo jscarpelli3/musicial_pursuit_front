@@ -158,6 +158,7 @@ export default {
   height: 6vh;
   background-color: rgb(244, 118, 28);
   text-shadow: 2px 1px 3px;
+  font-size: 4vh;
 }
 
 h1,

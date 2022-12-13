@@ -10,3 +10,5 @@ https://medium.com/@ronnow/dropdowns-in-vue-the-right-way-8ff9e8f36d4a
 https://blog.boot.dev/javascript/how-to-create-a-custom-checkbox-form-in-vue/
 
 https://dev.to/proticm/styling-html-checkboxes-is-super-easy-302o
+
+https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6

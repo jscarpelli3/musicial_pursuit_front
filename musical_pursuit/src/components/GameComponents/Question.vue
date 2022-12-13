@@ -67,7 +67,7 @@
           <p class="printed-question">{{ question }}</p>
           <label v-for="(answer, i) in answers" :key="i" class="ans-choice">
             {{ answer }}<br />
-            <input :id="answer" v-model="checked" type="checkbox" @change="onChange(answer)" />
+            <input :id="answer" type="checkbox" @input="onChange(answer)" />
           </label>
           <button @click="checkAnswer">Submit Answer</button>
         </div>
@@ -132,7 +132,6 @@ export default {
         lvl = 1
         score = this.round_three
       }
-      console.log(score)
       if (this.cur_answer === this.chosen_answer) {
         this.correctAns(score, lvl)
       } else {

@@ -15,19 +15,19 @@
       <Transition>
         <div v-if="active" class="menu">
           <div>
-            <router-link @click="toggle" to="/">Home</router-link>
+            <router-link @click="toggle" to="/dashboard" name="Dashboard">Dashboard</router-link>
           </div>
           <div>
             <router-link @click="toggle" to="/viewusers">View All Users</router-link>
           </div>
           <div>
-            <router-link @click="toggle" to="/dashboard" name="Dashboard">Dashboard</router-link>
+            <router-link @click="toggle" to="/register">Register New Player</router-link>
+          </div>
+          <div>
+            <router-link @click="toggle" to="/">FrontPage</router-link>
           </div>
           <div>
             <router-link @click="toggle" to="/loggedout">Logout</router-link>
-          </div>
-          <div>
-            <router-link @click="toggle" to="/register">Register New Player</router-link>
           </div>
         </div>
       </Transition>

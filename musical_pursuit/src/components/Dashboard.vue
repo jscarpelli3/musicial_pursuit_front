@@ -16,8 +16,7 @@
     <div class="find-user">
       <div class="find-user">
         <router-link to="/viewusers"><button>View All Users</button></router-link>
-        <!-- <router-link to="/viewbarks"><button>Who Has Barked At You!</button></router-link> -->
-        <router-link to="/viewbarked"><button>View Your Barks</button></router-link>
+        <router-link to="/viewbarks"><button>View Barks!</button></router-link>
       </div>
     </div>
     <div class="user-watch">
@@ -25,13 +24,12 @@
       <div v-if="has_watchlist">
         <div class="watch-sidescroll">
           <div class="watch-display" :key="watch.id" v-for="watch in watchlist">
-            <div class="comp-div">
+            <div class="comp-div card">
               <h4 class="competitor-name"><b>Name: </b>{{ watch.handle }} </h4>
               <h5 class="competitor-score"><b></b>Their Score: {{ watch.total_score }} </h5>
               <button @click="removeFromList(watch.id, user_id)">REMOVE </button>
               <button @click="makeBark(watch.id, watch.handle)">BARK!</button>
             </div>
-
           </div>
         </div>
       </div>
@@ -124,7 +122,6 @@ export default {
 }
 
 .delete-yourself {
-  /* border-top: 1px solid black; */
   border-bottom: 1px solid black;
   margin: 2vh 4vw;
   padding-bottom: 2vh;
@@ -148,7 +145,7 @@ export default {
   grid-template-columns: 1fr/1fr;
   margin: 2vh 1vw 2vh 1vw;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: rgba(240, 255, 255, 0.195);
   padding: 2vw;
 }
@@ -167,13 +164,14 @@ export default {
   height: 8vh;
   background-color: rgb(244, 118, 28);
   text-shadow: 2px 1px 3px;
+  font-size: 4vh;
 }
 
 button {
   width: 40vw;
   height: 4vh;
   background-color: rgba(227, 247, 247, 0.467);
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 1vh 1vw;
 }
 

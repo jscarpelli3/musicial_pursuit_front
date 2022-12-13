@@ -18,7 +18,7 @@
         <h1>View your own barks!</h1>
       </div>
       <div class="barked-container">
-        <div class="barked-display" :key="bark.id" v-for="bark in barked">
+        <div class="barks-display" :key="bark.id" v-for="bark in barked">
           <h4 class="barked-head">To:{{ bark.handle }}</h4>
           <!-- <h5 class="barked-head-lvl">Lvl:{{ bark.alltime_level }}</h5> -->
           <!-- <h5 class="bark">Bark!</h5> -->
@@ -74,21 +74,25 @@ button {
   text-align: center;
 }
 
-.bark-container {
+.barks-container,
+.barked-container {
   display: flex;
+  align-content: flex-end;
   flex-wrap: nowrap;
   overflow-x: auto;
   margin: 2vw
 }
 
-.barks-display,
-.barked-display {
-  padding: 2vh 6vw;
-  text-align: left;
+.barks-display {
+  flex: 0 0 auto;
+  padding: 2vh 3vw;
+  text-align: center;
   margin: 2vh 4vw 2vh 6vw;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: rgba(240, 255, 255, 0.195);
+  width: 50vw;
+  height: 17vh;
 }
 
 a {
