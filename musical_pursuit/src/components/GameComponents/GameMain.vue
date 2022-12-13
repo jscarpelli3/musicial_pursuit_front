@@ -79,8 +79,8 @@ export default {
       this.ses_score += points
       this.level_up += lvl
     },
-    incorrect() {
-
+    incorrect(points) {
+      this.ses_score -= points
     }
 
   }

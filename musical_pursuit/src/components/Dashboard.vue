@@ -5,7 +5,10 @@
       <h3>{{ user_profile.city }}</h3>
     </div>
     <div class="user-stats">
-      <h2>Your Level: {{ user_profile.current_level }}</h2>
+      <h2>Your Level: {{ parseInt(user_profile.current_level) }}</h2>
+      <h2>Your Level: {{ parseInt(user_profile.alltime_level) }}</h2>
+      <h2>Your Level: {{ parseInt(user_profile.high_ses_score) }}</h2>
+      <h2>Your Level: {{ parseInt(user_profile.total_score) }}</h2>
     </div>
     <div class="play-btn-div">
       <router-link to="game"><button class="play-btn">PLAY NOW!</button></router-link>
