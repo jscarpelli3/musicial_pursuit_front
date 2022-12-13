@@ -16,19 +16,20 @@
     <div class="find-user">
       <div class="find-user">
         <router-link to="/viewusers"><button>View All Users</button></router-link>
-        <router-link to="/viewbarks"><button>View Your Barks</button></router-link>
+        <!-- <router-link to="/viewbarks"><button>Who Has Barked At You!</button></router-link> -->
+        <router-link to="/viewbarked"><button>View Your Barks</button></router-link>
       </div>
     </div>
     <div class="user-watch">
-      <h3 class="watch-header">Your watchlist:</h3>
+      <h3 class="watch-header">Your Watchboard:</h3>
       <div v-if="has_watchlist">
-        <div class="temp">
+        <div class="watch-sidescroll">
           <div class="watch-display" :key="watch.id" v-for="watch in watchlist">
             <div class="comp-div">
               <h4 class="competitor-name"><b>Name: </b>{{ watch.handle }} </h4>
               <h5 class="competitor-score"><b></b>Their Score: {{ watch.total_score }} </h5>
               <button @click="removeFromList(watch.id, user_id)">REMOVE </button>
-              <button @click="makeBark(watch.id, user_id)">BARK!</button>
+              <button @click="makeBark(watch.id, watch.handle)">BARK!</button>
             </div>
 
           </div>
@@ -42,9 +43,6 @@
         </div>
         <!-- <button class="user-list-button">Find Users</button> -->
       </div>
-    </div>
-    <div class="new bark">
-      <input placeholder="bark!" @input="handleChange" name="bark" type="text" /><br />
     </div>
     <div class="delete-yourself">
       <p>If you've had enough of RockDog trivia... go ahead and delete yourself. We'll be sad you
@@ -81,11 +79,9 @@ export default {
       const intId = this.user_id
       const Id = intId.toString()
       const res = await axios.get(`http://localhost:3001/api/user/userprof/${Id}`)
-      console.log(this.user_handle)
       this.user_profile = res.data
-      this.$emit('setUser', this.user_profile)
+      this.$emit('User', this.user_profile)
       this.watchlist = res.data.being_watched
-      console.log(this.user_profile)
       if (this.watchlist.length > 0) {
         this.has_watchlist = true
       } else {
@@ -94,13 +90,16 @@ export default {
     },
     async deleteUser() {
       const intId = this.user_id
-      // const Id = intId.toString()
       await Client.delete(`/user/${intId}`)
       this.$router.push(`/bye`)
     },
     async removeFromList(being_watched, watcher) {
       await Client.delete(`/user/${being_watched}/${watcher}`)
       this.getUserInfo()
+    },
+    makeBark(id, handle) {
+      this.$router.push(`/newbark/${id}/${handle}`)
+
     }
   }
 }
@@ -120,37 +119,47 @@ export default {
 }
 
 .watch-header {
-  margin: 2vh 0 3vh 0;
+  margin: 3vh 0 1vh 0;
   text-shadow: 2px 1px 3px black;
 }
 
 .delete-yourself {
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
   border-bottom: 1px solid black;
   margin: 2vh 4vw;
   padding-bottom: 2vh;
 }
 
+.watch-sidescroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: 2vw
+}
+
+.card {
+  flex: 0 0 auto;
+}
+
+
 .watch-display,
 .user-stats {
   display: grid;
   grid-template-columns: 1fr/1fr;
-  margin: 2vh 4vw 2vh 4vw;
-  /* border: 1px solid black; */
-  /* margin: 2vw; */
+  margin: 2vh 1vw 2vh 1vw;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
   border-radius: 10px;
   background-color: rgba(240, 255, 255, 0.195);
-  /* border-radius: 8px; */
+  padding: 2vw;
 }
 
 .user-stats {
   margin: 2vh;
+  padding: 2vh
 }
 
 .play-btn-div {
   margin: 2vh;
-  /* padding: 2vh */
 }
 
 .play-btn {
@@ -160,30 +169,13 @@ export default {
   text-shadow: 2px 1px 3px;
 }
 
-/* .user-barks {
-  margin: 2vh;
-}
-
-.barks-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-} */
-
 button {
   width: 40vw;
   height: 4vh;
   background-color: rgba(227, 247, 247, 0.467);
   border-radius: 8px;
-  /* margin-bottom: 2vh; */
   margin: 1vh 1vw;
 }
-
-/* .bark-header {
-  margin-bottom: 2vh;
-} */
 
 h1,
 h2,
