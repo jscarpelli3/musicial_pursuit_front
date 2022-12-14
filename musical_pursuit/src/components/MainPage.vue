@@ -34,12 +34,11 @@
 </template>
 
 <script>
-// import Dashboard from './Dashboard.vue'
 import LoginPage from './LoginPage.vue'
 import axios from 'axios'
 import { LoginUser } from '@/services/Auth';
 // import { LoginUser, CheckSession, RegisterUser } from '@/services/Auth';
-// const API_KEY = process.env.VUE_APP_AUDIODB_KEY
+
 
 export default {
   name: "MainPage",
@@ -142,5 +141,9 @@ td {
 
 .login {
   margin-top: 3vh;
+}
+
+button {
+  font-family: Commissioner;
 }
 </style>

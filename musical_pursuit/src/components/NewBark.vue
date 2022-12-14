@@ -49,6 +49,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 button {
+  font-family: Commissioner;
   width: 50vw;
   height: 12vh;
   background-color: rgba(227, 247, 247, 0.467);

@@ -2,7 +2,7 @@
   <div>
     <div v-if="round === 0" class="game-details">
       <h1 class="headline">Get your rock brain ready!</h1>
-      <p class="game-ex">RockDog Trivia works in rounds of 3 quetsions.<br />Search an rock or pop artist you think you
+      <p class="game-ex">RockDog Trivia works in rounds of 3 quetsions.<br />Search a rock or pop artist you think you
         know, then answer 3 questions about their discography. Each question gets you points. If you answer all 3
         correct you will increase your level. </p>
     </div>

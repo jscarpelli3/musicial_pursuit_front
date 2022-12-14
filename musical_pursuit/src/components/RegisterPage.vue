@@ -72,6 +72,7 @@ export default {
 }
 
 button {
+  font-family: Commissioner;
   text-align: center;
   box-shadow: 3px 3px 2px 1px rgba(97, 97, 97, 0.2);
   border: 1px solid rgb(170, 170, 170);

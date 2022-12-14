@@ -3,71 +3,11 @@
     <h2>Round {{ roundNum }} </h2>
     <div class="game-space">
       <div v-if="show_question" class="printed-question-div">
-        <!-- <div v-if="show_question" class="printed-question-div">
-        <p class="printed-question">{{ question }}</p>
-        <div class="question" v-if="q_type === 0">
-          <h3 class="choice">you chose:{{ pick[0] }}</h3>
-          <form>
-            <label>{{ years[0] }}</label>
-            <input type="checkbox" v-model="pick1" id="years1" :value="years[0]" :disabled="pick.length > 0" /><br />
-            <label>{{ years[1] }}</label>
-            <input type="checkbox" v-model="pick2" id="years1" :value="years[1]" :disabled="pick.length > 0" /><br />
-            <label>{{ years[2] }}</label>
-            <input type="checkbox" v-model="pick3" id="years2" :value="years[2]" :disabled="pick.length > 0" /><br />
-            <label>{{ years[3] }}</label>
-            <input type="checkbox" v-model="pick4" id="years3" :value="years[3]" :disabled="pick.length > 0" /><br />
-          </form>
-        </div>
-        <div class="question" v-if="q_type === 1">
-          <h3 class="choice">you chose:{{ pick[0] }}</h3>
-          <form>
-            <label>Choose</label>
-            <input type="checkbox" v-model="pick" id="0" value="{{album_titles[0]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>Choose</label>
-            <input type="checkbox" v-model="pick" id="3" value="{{album_titles[1]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>Choose</label>
-            <input type="checkbox" v-model="pick" id="2" value="{{album_titles[2]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>Choose</label>
-            <input type="checkbox" v-model="pick" id="t" value="{{album_titles[3]}}"
-              :disabled="pick.length > 0" /><br />
-          </form>
-        </div>
-        <div class="question" v-if="q_type === 2">
-          <h3 class="choice">you chose:{{ pick[0] }}</h3>
-          <form>
-            <label>Single</label>
-            <input type="checkbox" v-model="pick" id="Single" value="Single" :disabled="pick.length > 0" /><br />
-            <label>Album</label>
-            <input type="checkbox" v-model="pick" id="Album" value="Album" :disabled="pick.length > 0" /><br />
-            <label>Neither</label>
-            <input type="checkbox" v-model="pick" id="Neither" value="Neither" :disabled="pick.length > 0" /><br />
-          </form>
-        </div>
-        <div class="question" v-if="q_type === 3">
-          <h3 class="choice">you chose:{{ pick[0] }}</h3>
-          <form>
-            <label>{{ current_labels[0] }}</label>
-            <input type="checkbox" v-model="pick" id="current_labels[0]" value="{{current_labels[0]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>{{ current_labels[1] }}</label>
-            <input type="checkbox" v-model="pick" id="current_labels[1]" value="{{current_labels[1]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>{{ current_labels[2] }}</label>
-            <input type="checkbox" v-model="pick" id="current_labels[2]" value="{{current_labels[2]}}"
-              :disabled="pick.length > 0" /><br />
-            <label>{{ current_labels[3] }}</label>
-            <input type="checkbox" v-model="pick" id=" current_labels[3]" value="{{current_labels[3]}}"
-              :disabled="pick.length > 0" /><br />
-          </form> -->
-        <!-- </div> -->
         <div class="answer-options">
           <p class="printed-question">{{ question }}</p>
           <label v-for="(answer, i) in answers" :key="i" class="ans-choice">
             {{ answer }}<br />
-            <input :id="answer" type="checkbox" @input="onChange(answer)" />
+            <input :id="answer" name="choice" type="radio" @input="onChange(answer)" />
           </label>
           <button @click="checkAnswer">Submit Answer</button>
         </div>
@@ -99,7 +39,7 @@ export default {
     question: "",
     cur_answer: "",
     show_question: false,
-    possible_labels: ["Interscope Records", "Capitol Records", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records"],
+    possible_labels: ["Interscope Records", "Capitol Records", "Blood Sweat & Money MG", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records", "Fantastic", "Trauma", "Tender Records", "Paramount Records", "Simple Vibes", "Carpathian", "Hubsuscus", "MetalZone", "Pop Magic", "Scraperelli Records", "JJacobs Records", "AT Music Group", "Hi Im Jeremy Recordings", "Mad Ash Music", "MoMed-Only-Head Records", "SMW Hot-Mic Records", "RyTy Music Group", "JC Endzone Records", "GA Shuld Pay Records", "KustMud Custom Music Group", "Has Read Or Likes To Read Records", "Not 1 but 2 Music Group", "GGP LPs", "Alveal Recordings", "CyberGonzo Music", "K White Records", "Not Steven Records", "TomTomKickSnare Music"],
     current_labels: [],
     years: [],
     album_titles: [],
@@ -270,7 +210,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .game-space {
   display: flex;
@@ -283,14 +222,11 @@ export default {
   background-color: rgb(146, 146, 146);
 }
 
-/* checkbox>input:checked {
-} */
-
 .question,
 .answer-options {
   display: grid;
   grid-template-columns: 1fr;
-  /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+
   background-color: rgba(105, 105, 105, 0.247);
   padding: 1vh 2vw 1vh 2vw;
   border-radius: 8px;

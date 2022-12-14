@@ -23,7 +23,7 @@
           <!-- <h5 class="barked-head-lvl">Lvl:{{ bark.alltime_level }}</h5> -->
           <!-- <h5 class="bark">Bark!</h5> -->
           <p>{{ bark.Bark.bark }}</p>
-          <!-- <button @click="this.$router.push(`/newbark/${bark.id}/${bark.handle}`)">Bark Back!</button> -->
+          <button @click="handleDelete">Delete!</button>
         </div>
       </div>
     </div>
@@ -66,6 +66,7 @@ export default {
 
 <style scoped>
 button {
+  font-family: Commissioner;
   width: 40vw;
   height: 4vh;
   background-color: rgba(227, 247, 247, 0.467);

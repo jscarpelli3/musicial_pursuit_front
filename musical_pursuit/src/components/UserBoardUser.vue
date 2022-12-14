@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// import Client from '../services/api'
 import axios from 'axios'
 
 export default {
@@ -32,7 +31,6 @@ export default {
     async addList(adding, current_user) {
       console.log(this.user_id)
       let watchlistAdd = { being_watched: adding, watcher: current_user }
-      // await Client.post(`/user/watch`, watchlistAdd)
       await axios.post(`http://localhost:3001/api/user/watch`, watchlistAdd)
       this.$router.push(`/dashboard`)
     }
@@ -45,19 +43,17 @@ export default {
 .user-table {
   display: grid;
   grid-template: 1fr 1fr 1fr/1fr 1fr 1fr 1fr;
-  /* border: 1px solid black; */
-  margin: 2vw;
-  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.407);
-  border-radius: 17px;
+  margin: 2vh 8vw 2vh 8vw;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
+  border-radius: 6px;
   background-color: rgba(240, 255, 255, 0.195);
+  padding: 0vw;
 }
 
 .w-list {
   margin: 0 0 0 0;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  /* align-content: center; */
   font-size: 14px;
   color: black;
 }
@@ -74,7 +70,7 @@ export default {
   margin-bottom: 2vh;
 }
 
-/* .user {
-
-} */
+button {
+  font-family: Commissioner;
+}
 </style>

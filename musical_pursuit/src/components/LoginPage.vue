@@ -16,8 +16,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// const API_KEY = process.env.VUE_APP_AUDIODB_KEY
+
 
 export default {
   name: 'LoginPage',
@@ -29,10 +28,6 @@ export default {
   }),
   components: {},
   methods: {
-    // handleChange(e) {
-    //   this.loginInfo = { [e.target.name]: e.target.value }
-    //   console.log(event);
-    // }
     handleChange(e) {
       this.$emit('handleFormChange', e.target.name, e.target.value)
     },
@@ -78,5 +73,9 @@ input {
   color: black;
   width: 18vw;
   height: 8vh;
+}
+
+button {
+  font-family: Commissioner;
 }
 </style>

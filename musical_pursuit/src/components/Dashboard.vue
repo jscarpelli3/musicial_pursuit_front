@@ -39,7 +39,6 @@
         <div class="find-user">
           <router-link to="/viewusers"><button>View All Users</button></router-link>
         </div>
-        <!-- <button class="user-list-button">Find Users</button> -->
       </div>
     </div>
     <div class="delete-yourself">
@@ -53,8 +52,6 @@
 <script>
 import axios from 'axios'
 import Client from '../services/api'
-// import { LoginUser } from '@/services/Auth';
-// const API_KEY = process.env.VUE_APP_AUDIODB_KEY
 
 export default {
   name: 'DashboardView',
@@ -168,6 +165,7 @@ export default {
 }
 
 button {
+  font-family: Commissioner;
   width: 40vw;
   height: 4vh;
   background-color: rgba(227, 247, 247, 0.467);
