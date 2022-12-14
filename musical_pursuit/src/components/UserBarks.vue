@@ -10,7 +10,7 @@
           <h4 class="bark-head">From: <b>{{ bark.handle }}</b></h4>
           <p>{{ bark.bark }}</p>
           <h6>{{ barkTime(bark.createdAt) }}</h6>
-          <button @click="this.$router.push(`/newbark/${bark.id}/${bark.handle}`)">Bark Back!</button>
+          <button @click="this.$router.push(`/newbark/${bark.barked}/${bark.handle}`)">Bark Back!</button>
         </div>
       </div>
       <div class="user-info">

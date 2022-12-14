@@ -13,7 +13,7 @@
         <button>Search</button>
       </form>
       <div v-if="search_fail">
-        <h2>Invaldi Artist Name!</h2>
+        <h2>Invalid Artist Name!</h2>
         <button @click="toggleSearchFail">Click to search again</button>
       </div>
     </div>
