@@ -10,7 +10,7 @@
         </div>
         <div class="register-button">
           <button id="register-button" :disabled="!handle || !password"><img
-              src="../assets/paw.png" /><br />Register</button>
+              src="../assets/horns.png" /><br />Register</button>
         </div>
       </form>
       <div v-if="registered">
@@ -67,7 +67,17 @@ export default {
   text-align: center;
 }
 
+.register-button {
+  margin-top: 2vh;
+}
+
 button {
   text-align: center;
+  box-shadow: 3px 3px 2px 1px rgba(97, 97, 97, 0.2);
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 4px;
+  color: black;
+  width: 18vw;
+  height: 8vh;
 }
 </style>

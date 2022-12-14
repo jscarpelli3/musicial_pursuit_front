@@ -47,18 +47,25 @@ body {
   padding: 0;
   box-sizing: border-box;
   /* overflow: hidden; */
-  background-color: rgb(135, 146, 157)
+  background-color: rgb(161, 182, 204)
 }
 
 #app {
-  font-family: Calistoga;
+  /* font-family: Calistoga; */
+  /* font-family: DM Serif Display; */
+  /* font-family: Commissioner; */
+  /* font-family: Gowun Dodum; */
+  font-family: Lexend;
+  /* font-family: RocknRoll One; */
+  /* font-family: Vollkorn; */
+  /* font-family: Wallpoet; */
+  /* font-family: Holtwood One SC; */
+  /* font-family: Lobster; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* VUE green */
-  /* color: #2c3e50; */
-  color: #d6d6d6;
-  /* margin-top: 60px; */
+  color: #efefef;
+
 }
 
 .rd-logo {
@@ -67,19 +74,12 @@ body {
 }
 
 header {
-  /* display: flex;
-  justify-content: space-between; */
   width: 100vw;
   padding-top: 1vh;
   position: fixed;
   margin-bottom: 3vh;
   background-color: darkslategray;
 }
-
-/* .main-area {
-  margin-top: 60px;
-  margin-top: 5vh;
-} */
 
 a {
   color: rgb(25, 25, 25);

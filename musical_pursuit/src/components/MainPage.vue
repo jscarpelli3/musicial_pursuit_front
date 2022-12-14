@@ -2,7 +2,7 @@
   <div>
     <div class="main">
       <div class="greeting">
-        <h1>RockDog Trivia!</h1>
+        <h1 class="title">RockDog Trivia!</h1>
         <h4>A place for competative trivia nerds<br> and rock music enthusiasts</h4>
       </div>
       <div class="login">
@@ -10,22 +10,24 @@
           @handleLoginSubmit="handleLoginSubmit" />
       </div>
       <h3 v-if="login_fail">Login Failed</h3>
-      <h3>Top10!</h3>
-      <div class="top-10">
-        <table class="leader-table">
-          <thead class="leader-table-head">
-            <tr>
-              <th>Handle</th>
-              <th></th>
-              <th>TopScore</th>
-            </tr>
-          </thead>
-          <tbody class="leader-table-body" :key="leader.id" v-for="leader in leaders">
-            <td>{{ leader.handle }}</td>
-            <td class="dash">-</td>
-            <td>{{ leader.total_score }}</td>
-          </tbody>
-        </table>
+      <div class="table-container">
+        <h3 class="table-head-title">Top 10 Players!</h3>
+        <div class="top-10">
+          <table class="leader-table">
+            <thead class="leader-table-head">
+              <tr>
+                <th>Handle</th>
+                <!-- <th></th> -->
+                <th>TopScore</th>
+              </tr>
+            </thead>
+            <tbody class="leader-table-body" :key="leader.id" v-for="leader in leaders">
+              <td>{{ leader.handle }}</td>
+              <!-- <td class="dash">-</td> -->
+              <td>{{ leader.total_score }}</td>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -99,15 +101,42 @@ export default {
   padding: 0 4vw;
 }
 
-table {
-  background-color: rgba(33, 51, 67, 0.529);
-  /* border: 1px solid black; */
+
+.leader-table {
+  background-color: rgba(36, 62, 85, 0.529);
   box-shadow: 8px 8px 2px 1px rgba(97, 97, 97, 0.2);
   border-radius: 3px;
-  padding: 2vh;
+  padding: 4vh;
 }
 
 th {
-  border-bottom: 1px solid black;
+  text-align: center;
+  background-color: rgba(83, 88, 91, 0.704);
+  margin: 0;
+}
+
+td {
+  background-color: rgba(85, 120, 143, 0.704);
+  text-align: center;
+  width: 30vw;
+}
+
+.table-container {
+  box-shadow: 8px 8px 2px 1px rgba(97, 97, 97, 0.348);
+  border-radius: 3px;
+  background-color: rgba(109, 123, 130, 0.704);
+  margin: 7vw;
+  padding: 2vh 0;
+}
+
+.title {
+  font-family: Holtwood One SC;
+  color: azure;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.647);
+}
+
+.table-head-title {
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.647);
+  margin: 0 0 2vh 0;
 }
 </style>
