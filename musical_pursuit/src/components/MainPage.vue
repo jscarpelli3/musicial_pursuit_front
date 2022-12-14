@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     async getLeaderBoard() {
-      const res = await axios.get(`http://localhost:3001/api/user/users`);
+      const res = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/users`);
       let data = res.data
       let sorted_data = data.sort(({ total_score: a }, { total_score: b }) => b - a)
       let top_ten = []

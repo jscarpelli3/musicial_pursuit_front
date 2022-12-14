@@ -70,14 +70,16 @@ export default {
     },
     async getBarks() {
       const intId = this.user_id
-      const res = await axios.get(`http://localhost:3001/api/user/userbarked/${intId}`)
+      // const res = await axios.get(`http://localhost:3001/api/user/userbarked/${intId}`)
+      const res = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/userbarker/${intId}`)
       this.user_profile = res.data
       console.log(res)
       this.barks = res.data
     },
     async getBarked() {
       const intId = this.user_id
-      const res_barked = await axios.get(`http://localhost:3001/api/user/userbarker/${intId}`)
+      // const res_barked = await axios.get(`http://localhost:3001/api/user/userbarker/${intId}`)
+      const res_barked = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/userbarked/${intId}`)
       console.log(res_barked)
       this.barked = res_barked.data
     },

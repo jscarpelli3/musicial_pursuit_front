@@ -16,7 +16,8 @@ import Client from '../services/api'
 export default {
   name: 'NewBark',
   props: {
-    user_id: Number
+    user_id: Number,
+    user_handle: String
   },
   data: () => ({
     rec_handle: "",
@@ -32,10 +33,11 @@ export default {
       this.rec_id = this.$route.params.recipientId
       console.log(this.rec_handle)
       console.log(this.rec_id)
+      console.log(this.user_handle)
     },
     async submitBark(e) {
       e.preventDefault()
-      let newBark = { bark: this.bark_txt, barker: this.user_id, barked: this.rec_id, handle: this.rec_handle }
+      let newBark = { bark: this.bark_txt, barker: this.user_id, barked: this.rec_id, handle: this.user_handle }
       await Client.post(`/bark`, newBark)
       this.$router.push('/dashboard')
     },

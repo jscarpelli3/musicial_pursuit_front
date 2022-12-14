@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     async getUsers() {
-      const res = await axios.get(`http://localhost:3001/api/user/users`);
+      const res = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/users`);
       this.users = res.data;
       console.log(this.users)
     }

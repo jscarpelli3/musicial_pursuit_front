@@ -27,8 +27,10 @@
             <div class="watch-sidescroll">
               <div class="watch-display" :key="watch.id" v-for="watch in watchlist">
                 <div class="comp-div card">
-                  <h4 class="competitor-name"><b>Name: </b>{{ watch.handle }} </h4>
-                  <h5 class="competitor-score"><b></b>Their Score: {{ watch.total_score }} </h5>
+                  <div class="comp-head">
+                    <h4 class="competitor-name"><b>Name: </b>{{ watch.handle }} </h4>
+                    <h5 class="competitor-score"><b></b>Their Score: {{ watch.total_score }} </h5>
+                  </div>
                   <button @click="removeFromList(watch.id, user_id)">REMOVE </button>
                   <button @click="makeBark(watch.id, watch.handle)">BARK!</button>
                 </div>
@@ -60,7 +62,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import Client from '../services/api'
 
 export default {
@@ -147,6 +148,9 @@ export default {
   flex: 0 0 auto;
 }
 
+.comp-head {
+  height: 9vh;
+}
 
 .watch-display,
 .user-stats {

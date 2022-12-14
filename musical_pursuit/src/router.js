@@ -21,7 +21,7 @@ const routes = [
   { path: '/user_user', component: UserBoardUser, name: UserBoardUser, props:true },
   { path: '/viewbarks', component: UserBarks, name: UserBarks, props:true },
   { path: '/bye', component: ByePage, name: ByePage, props:true },
-  { path: '/newbark/:recipientId/:recipientHandle', component: NewBark, name: NewBark },
+  { path: '/newbark/:recipientId/:recipientHandle', component: NewBark, name: NewBark, props:true },
 ]
 
 const router = createRouter({
