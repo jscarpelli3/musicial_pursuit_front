@@ -1,29 +1,31 @@
 <template>
   <div class="profile-space">
     <div class="user-info">
-      <h1>What is your competition barking at you?</h1>
+      <h1 class="bark-title">RockDogs are barking!</h1>
     </div>
     <div class="user-barks">
       <!-- <div v-if="has_barks"> -->
       <div class="barks-container">
         <div class="barks-display" :key="bark.id" v-for="bark in barks">
-          <h4 class="bark-head">{{ bark.handle }}</h4>
+          <h4 class="bark-head">From: <b>{{ bark.handle }}</b></h4>
           <h5 class="bark-head-lvl">Lvl:{{ bark.alltime_level }}</h5>
           <!-- <h5 class="bark">Bark!</h5> -->
           <p>{{ bark.Bark.bark }}</p>
+          <h6>{{ barkTime(bark.Bark.createdAt) }}</h6>
           <button @click="this.$router.push(`/newbark/${bark.id}/${bark.handle}`)">Bark Back!</button>
         </div>
       </div>
       <div class="user-info">
-        <h1>View your own barks!</h1>
+        <h2 class="bark-title yours">your barks...</h2>
       </div>
       <div class="barked-container">
         <div class="barks-display" :key="bark.id" v-for="bark in barked">
-          <h4 class="barked-head">To:{{ bark.handle }}</h4>
+          <h4 class="barked-head">To: <b>{{ bark.handle }} </b></h4>
           <!-- <h5 class="barked-head-lvl">Lvl:{{ bark.alltime_level }}</h5> -->
           <!-- <h5 class="bark">Bark!</h5> -->
           <p>{{ bark.Bark.bark }}</p>
-          <button @click="handleDelete">Delete!</button>
+          <h6>{{ barkTime(bark.Bark.createdAt) }}</h6>
+          <!-- <button @click="handleDelete">Delete!</button> -->
         </div>
       </div>
     </div>
@@ -58,6 +60,12 @@ export default {
       const res_barked = await axios.get(`http://localhost:3001/api/user/userbarker/${intId}`)
       console.log(res_barked)
       this.barked = res_barked.data.barker
+    },
+    barkTime(timestamp) {
+      let split = timestamp.split(/[T:]/)
+      let date = `${split[0]}`
+      let time = `${split[1]}:${split[2]}`
+      return `Barked at ${time} on ${date}`
     }
   }
 }
@@ -130,5 +138,17 @@ p {
   color: black;
   background-color: rgba(128, 128, 128, 0.559);
   padding: 2vw;
+}
+
+.bark-title {
+  text-align: left;
+  color: azure;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.647);
+  margin: 1vh 4vw;
+}
+
+.user-info {
+  border-top: 1px solid black;
+  margin: 3vh 3vw 0 3vw;
 }
 </style>
