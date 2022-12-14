@@ -173,4 +173,8 @@ h6 {
 .artist-logo {
   width: 90vw;
 }
+
+.cur-artist {
+  margin-bottom: 3vh;
+}
 </style>

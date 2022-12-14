@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import Client from '../services/api'
 
 export default {
   name: 'UserBoardUSer',
@@ -31,7 +32,7 @@ export default {
     async addList(adding, current_user) {
       console.log(this.user_id)
       let watchlistAdd = { being_watched: adding, watcher: current_user }
-      await axios.post(`http://localhost:3001/api/user/watch`, watchlistAdd)
+      await await Client.post(`/user/watch`, watchlistAdd)
       this.$router.push(`/dashboard`)
     }
   }

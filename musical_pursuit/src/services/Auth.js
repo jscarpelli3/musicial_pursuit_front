@@ -9,7 +9,6 @@ export const LoginUser = async (hnd, pass) => {
 
 export const RegisterUser = async (data) => {
     console.log(data)
-    // const data = {hndle, pass, cty}
     const res = await Client.post('/auth/register', data)
     return res.data
 }
