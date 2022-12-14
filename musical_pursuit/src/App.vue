@@ -46,7 +46,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow: hidden; */
   background-color: rgb(161, 182, 204)
 }
 
