@@ -21,11 +21,8 @@
       <div class="barked-container">
         <div class="barks-display" :key="bark.id" v-for="bark in barked">
           <h4 class="barked-head">To: <b>{{ bark.handle }} </b></h4>
-          <!-- <h5 class="barked-head-lvl">Lvl:{{ bark.alltime_level }}</h5> -->
-          <!-- <h5 class="bark">Bark!</h5> -->
           <p>{{ bark.Bark.bark }}</p>
           <h6>{{ barkTime(bark.Bark.createdAt) }}</h6>
-          <!-- <button @click="handleDelete">Delete!</button> -->
         </div>
       </div>
     </div>
