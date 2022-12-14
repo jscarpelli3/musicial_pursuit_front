@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="user_id" class="dashboard">
+    <div v-if="auth" class="dashboard">
       <div class="profile-space">
         <div class="user-info">
           <h1>{{ user_profile.handle }}</h1>
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div v-else-if="!user_id" class="not-logged-in">
+    <div v-else-if="!auth" class="not-logged-in">
       <h1>You are not logged in!</h1>
       <router-link to="/"><button>
           <h2>Go Back</h2>
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     async getUserInfo() {
-      console.log(this.authentic)
+      console.log(this.auth)
       const intId = this.user_id
       const Id = intId.toString()
       const res = await Client.get(`/user/userprof/${Id}`)

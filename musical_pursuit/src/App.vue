@@ -8,7 +8,7 @@
         <img alt="rd-logo" class="rd-logo" src="./assets/RockDog_icn_shdw.png">
       </div>
       <router-view :user="current_user" :user_handle="current_user.handle" :user_id="current_user.id"
-        :user_total="current_user.total_score" :auth_bool="authenticated" @handleLogOut="handleLogOut"
+        :user_total="current_user.total_score" :auth="authenticated" @handleLogOut="handleLogOut"
         @setUser="setUser"></router-view>
     </div>
   </div>

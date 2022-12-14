@@ -35,7 +35,7 @@ export default {
     },
     async submitBark(e) {
       e.preventDefault()
-      let newBark = { bark: this.bark_txt, barker: this.user_id, barked: this.rec_id }
+      let newBark = { bark: this.bark_txt, barker: this.user_id, barked: this.rec_id, handle: this.rec_handle }
       await Client.post(`/bark`, newBark)
       this.$router.push('/dashboard')
     },

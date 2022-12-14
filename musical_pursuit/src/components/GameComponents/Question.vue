@@ -52,8 +52,6 @@ export default {
   methods: {
     onChange(answer) {
       this.chosen_answer = answer
-      console.log(this.chosen_answer)
-      console.log(this.checked)
     },
     correctAns(score, lvl) {
       this.$emit('correct', score, lvl)
@@ -77,7 +75,6 @@ export default {
       } else {
         this.incorrectAns()
       }
-      console.log('check answer')
     },
     createQuestion(questions) {
       console.log(this.user)
@@ -95,20 +92,15 @@ export default {
       let questionType = Math.floor(Math.random() * questions)
       ///Determin syntax for question
       if (questionType === 0) {
-        console.log('what year')
         this.question = `What year was their album "${album}" released?`
       } else if (questionType === 1) {
-        console.log('what album')
         this.question = `What album did ${artist} release in the year ${year}?`
       } else if (questionType === 2) {
         this.question = `Was the album "${album}"" released as a full album or as a single?`
-        console.log('album or single')
       } else if (questionType === 3) {
         if (this.artistAlbumInfo.album[albumIdx].strLabel !== null) {
-          console.log('label question')
           this.question = `What label was their album "${album}" released on?`
         } else {
-          console.log('no label info')
           this.createQuestion(3)
         }
       }
