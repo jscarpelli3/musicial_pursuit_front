@@ -6,7 +6,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     plugins: [
-      new Dotenv({path:'./.env'})
+      new Dotenv()
     ]
   }
 })
