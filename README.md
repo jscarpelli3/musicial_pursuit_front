@@ -1,15 +1,24 @@
-# musicial_pursuit_front
+# musical_pursuit
 
-Musical Pursuit is a music trivia app where Users can compete against other users in answering trivia questions about popular music of ver last 70 years.
+## Project setup
+```
+npm install
+```
 
-Utilizing AudioDb API (https://www.theaudiodb.com/) to serve data about songs and artists, users will answer questions in rounds of 6.  Each correct answer wins you points, each missed answer LOSES you points.  6 correct answers wins you a level up!
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-A user can search other users and add other to their "watchlist" to watch their competition!
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Lints and fixes files
+```
+npm run lint
+```
 
-![CHD](MusicalPursuit_CHD.png)
-![ERD](MusicialPursuit_ERD.png)
-
-**Trello https://trello.com/b/Nsv0lIuI/capstone-project<br/>
-**Front End Repo https://github.com/jscarpelli3/musical_pursuit_server<br/>
-**Back End Repo https://github.com/jscarpelli3/musicial_pursuit_front<br/>
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
