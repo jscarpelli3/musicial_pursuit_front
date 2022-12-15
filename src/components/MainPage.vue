@@ -68,7 +68,6 @@ export default {
     },
     async handleLoginSubmit() {
       const payload = await LoginUser(this.handle, this.password)
-      console.log(payload)
       if (payload) {
         this.$emit('setUser', payload)
         this.current_user = payload

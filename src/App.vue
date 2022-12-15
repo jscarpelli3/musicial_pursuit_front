@@ -35,7 +35,6 @@ export default {
     setUser(payload) {
       this.current_user = payload
       this.authenticated = true
-      console.log(this.authenticated)
     }
   }
 }

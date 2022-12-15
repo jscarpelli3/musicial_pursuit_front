@@ -42,7 +42,6 @@ export default {
     },
     async handleRegisterSubmit(e) {
       e.preventDefault()
-      console.log('Register Button')
       await RegisterUser({ handle: this.handle, password: this.password, city: this.city, alltime_level: 1, current_level: 1, high_ses_score: 0, total_score: 0 })
       this.handle = ''
       this.password = ''

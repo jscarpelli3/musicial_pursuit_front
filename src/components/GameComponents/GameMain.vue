@@ -2,7 +2,7 @@
   <div>
     <div v-if="round === 0" class="game-details">
       <h1 class="headline">Get your rock brain ready!</h1>
-      <p class="game-ex">RockDog Trivia works in rounds of 3 quetsions.<br />Search a rock or pop artist you think you
+      <p class="game-ex">RockDog Trivia works in rounds of 3 questions.<br />Search a rock or pop artist you think you
         know, then answer 3 questions about their discography. Each question gets you points. If you answer all 3
         correct you will increase your level. </p>
     </div>
@@ -21,6 +21,9 @@
       <h2 v-if="round === 0">Get ready to answer questions about {{ searchResults.album[0].strArtist }}!</h2>
       <img class="artist-logo" :src="artist_image_src" /><br />
       <button v-if="round === 0" class="go-btn" @click="start_round">GO!</button>
+    </div>
+    <div v-if="round !== 0">
+      <h3 class="points">Points this session: {{ ses_score }}</h3>
     </div>
     <div v-if="round === 1" class="round-one-q">
       <Question :user="user" :artistAlbumInfo="searchResults" @correct="correct" @incorrect="incorrect"
@@ -70,14 +73,11 @@ export default {
     ses_score: 0,
     level_up: 0
   }),
-  mounted() {
-    this.printStats()
-  },
+  mounted() { },
   methods: {
     async getAlbums(e) {
       e.preventDefault();
       const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
-      console.log(res.data)
       if (res.data.album === null) {
         this.search_fail = true
       } else {
@@ -115,26 +115,16 @@ export default {
     async submit_scores() {
       const newTotal = parseInt(this.user.total_score) + this.ses_score
       const newLvl = parseInt(this.user.current_level) + this.level_up
-      let newAllTime = 3
+      let newAllTime = parseInt(this.user.alltime_level)
       let newSesScore = parseInt(this.user.high_ses_score)
       if (parseInt(this.user.alltime_level) < newLvl) {
-        console.log(newAllTime)
         newAllTime = newLvl
       }
       if (parseInt(this.user.high_ses_score) < this.ses_score) {
-        console.log(newSesScore)
         newSesScore = newTotal
       }
       const newStats = { current_level: newLvl, total_score: newTotal, alltime_level: newAllTime, high_ses_score: newSesScore }
       await Client.put(`/user/${this.user.id}`, newStats)
-    },
-    printStats() {
-      console.log(API_KEY)
-      console.log(this.user.high_ses_score)
-      console.log(this.user.total_score)
-      console.log(this.user.alltime_level)
-      console.log(this.user.current_level)
-      console.log(this.user.id)
     },
     toggleSearchFail() {
       this.searchQuery = ''
@@ -177,5 +167,10 @@ h6 {
 
 .cur-artist {
   margin-bottom: 3vh;
+}
+
+.points {
+  color: rgba(0, 0, 0, 0.427);
+  background-color: rgba(250, 235, 215, 0.128);
 }
 </style>

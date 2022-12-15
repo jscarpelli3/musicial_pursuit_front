@@ -50,18 +50,11 @@ export default {
   },
   methods: {
     async getUserBarks() {
-      // const intId = this.user_id
-      // const res = await axios.get(`http://localhost:3001/api/user/userbarked/${intId}`)
-      // this.user_profile = res.data
-      // console.log(res)
-      // this.barks = res.data
       this.getBarks()
       this.getBarked()
     },
     async deleteBark(barker, created, self) {
       await Client.delete(`bark/${barker}/${created}`)
-      console.log(created)
-      console.log(barker)
       if (self) {
         this.getBarked()
       } else {
@@ -70,30 +63,15 @@ export default {
     },
     async getBarks() {
       const intId = this.user_id
-      // const res = await axios.get(`http://localhost:3001/api/user/userbarked/${intId}`)
       const res = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/userbarker/${intId}`)
       this.user_profile = res.data
-      console.log(res)
       this.barks = res.data
     },
     async getBarked() {
       const intId = this.user_id
-      // const res_barked = await axios.get(`http://localhost:3001/api/user/userbarker/${intId}`)
       const res_barked = await axios.get(`https://rockdog-trivia-server.herokuapp.com/api/user/userbarked/${intId}`)
-      console.log(res_barked)
       this.barked = res_barked.data
     },
-
-    // async getUserBarks() {
-    //   const intId = this.user_id
-    //   // const Id = intId.toString()
-    //   const res = await axios.get(`http://localhost:3001/api/user/userbarked/${intId}`)
-    //   this.user_profile = res.data
-    //   this.barks = res.data.barked
-    //   const res_barked = await axios.get(`http://localhost:3001/api/user/userbarker/${intId}`)
-    //   console.log(res_barked)
-    //   this.barked = res_barked.data.barker
-    // },
     barkTime(timestamp) {
       let split = timestamp.split(/[T:]/)
       let date = `${split[0]}`

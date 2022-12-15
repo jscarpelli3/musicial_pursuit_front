@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     async getUserInfo() {
-      console.log(this.auth)
       const intId = this.user_id
       const Id = intId.toString()
       const res = await Client.get(`/user/userprof/${Id}`)

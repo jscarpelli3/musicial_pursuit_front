@@ -31,9 +31,6 @@ export default {
     setRecipient() {
       this.rec_handle = this.$route.params.recipientHandle
       this.rec_id = this.$route.params.recipientId
-      console.log(this.rec_handle)
-      console.log(this.rec_id)
-      console.log(this.user_handle)
     },
     async submitBark(e) {
       e.preventDefault()

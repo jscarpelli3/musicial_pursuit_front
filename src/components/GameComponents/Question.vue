@@ -39,7 +39,7 @@ export default {
     question: "",
     cur_answer: "",
     show_question: false,
-    possible_labels: ["Interscope Records", "Capitol Records", "Blood Sweat & Money MG", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records", "Fantastic", "Trauma", "Tender Records", "Paramount Records", "Simple Vibes", "Carpathian", "Hubsuscus", "MetalZone", "Pop Magic", "Scraperelli Records", "JJacobs Records", "AT Music Group", "Hi Im Jeremy Recordings", "Mad Ash Music", "MoMed-Only-Head Records", "SMW Hot-Mic Records", "RyTy Music Group", "JC Endzone Records", "GA Shuld Pay Records", "KustMud Custom Music Group", "Has Read Or Likes To Read Records", "Not 1 but 2 Music Group", "GGP LPs", "Alveal Recordings", "CyberGonzo Music", "K White Records", "Not Steven Records", "TomTomKickSnare Music"],
+    possible_labels: ["Interscope Records", "Capitol Records", "Blood Sweat & Money MG", "Cool Dog Records", "4-AD", "Hyperbole Records", "Flammable Records", "Truth & Lies Records", "Elektra Records", "MetalScope Records", "FreeZone Records", "Fantastic", "Trauma", "Tender Records", "Paramount Records", "Simple Vibes", "Carpathian", "Hubsuscus", "MetalZone", "Pop Magic", "Scraperelli Records", "JJEasy Records", "ATtheTA Music Group", "Hi Im Jeremy Recordings", "Mad Ash Music", "MoMed-Only-Head Records", "SMW Hot-Mic Records", "RyTy Music Group", "JC Endzone Records", "GA Shuld Pay Records", "KustMud Custom Music Group", "Has Read Or Likes To Read Records", "BriLl Style Records", "GGP LPs", "Alveal Recordings", "CyberGonzo Music", "K White Records", "Not Steven Records", "TomTomKickSnare Music", "LaSheGone Music"],
     current_labels: [],
     years: [],
     album_titles: [],
@@ -77,7 +77,6 @@ export default {
       }
     },
     createQuestion(questions) {
-      console.log(this.user)
       ///establish data for question
       ///generate random numbers to choose data
       ///artist name
@@ -96,7 +95,7 @@ export default {
       } else if (questionType === 1) {
         this.question = `What album did ${artist} release in the year ${year}?`
       } else if (questionType === 2) {
-        this.question = `Was the album "${album}"" released as a full album or as a single?`
+        this.question = `In what format was the album "${album}" released?`
       } else if (questionType === 3) {
         if (this.artistAlbumInfo.album[albumIdx].strLabel !== null) {
           this.question = `What label was their album "${album}" released on?`
@@ -113,7 +112,6 @@ export default {
       ///ALBUM YEARS QUESTION
       if (type === 0) {
         this.answers = []
-        console.log('question type 0')
         let artistStart = parseInt(this.artistStartYr)
         let releaseYr = parseInt(this.artistAlbumInfo.album[albumIndex].intYearReleased)
         let years = [releaseYr]
@@ -135,14 +133,11 @@ export default {
           this.answers.push(years[num])
           years.splice(num, 1)
         }
-        console.log(this.years)
         ///ALBUM TITLES QUESTION
       } else if (type === 1) {
         this.answers = []
-        console.log('question type 1')
         ///transfer album info from data to function-local
         let albums = this.artistAlbumInfo.album
-        console.log(albums)
         ///create temp array for 4 album titles
         let albumTitles = []
         ///include the correct answer
@@ -157,7 +152,6 @@ export default {
           albumTitles.push(albums[num].strAlbum)
           albums.splice(num, 1)
         }
-        console.log(this.artistAlbumInfo.album)
         ///randomly send one of the 4 album titles to the answer array
         for (let i = 0; i < 4; i++) {
           let num = Math.floor(Math.random() * albumTitles.length)
@@ -167,7 +161,6 @@ export default {
         ///ALBUM SINGLE QUESTION
       } else if (type === 2) {
         this.answers = []
-        console.log('question type 2')
         ///simply set the current answer to the release format in the chosen album record
         this.cur_answer = this.artistAlbumInfo.album[albumIndex].strReleaseFormat
         this.answers.push("Single")
@@ -177,7 +170,6 @@ export default {
         ///ALBUM LABEL QUESTION
       } else if (type === 3) {
         this.answers = []
-        console.log('question type 3')
         ///set answer
         this.cur_answer = this.artistAlbumInfo.album[albumIndex].strLabel
         ///add answer to answer choices
