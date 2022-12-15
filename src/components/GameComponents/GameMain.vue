@@ -129,6 +129,7 @@ export default {
       await Client.put(`/user/${this.user.id}`, newStats)
     },
     printStats() {
+      console.log(API_KEY)
       console.log(this.user.high_ses_score)
       console.log(this.user.total_score)
       console.log(this.user.alltime_level)
