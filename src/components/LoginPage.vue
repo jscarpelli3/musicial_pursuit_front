@@ -12,6 +12,9 @@
         </div>
       </div>
     </form>
+    <div>
+      <p>to login:<br /><b>handle:</b> admin <br /><b>password:</b> admin </p>
+    </div>
   </div>
 </template>
 
