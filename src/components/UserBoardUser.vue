@@ -41,8 +41,6 @@ export default {
 
 <style scoped>
 .user-table {
-  /* display: grid;
-  grid-template: 1fr 1fr 1fr/1fr 1fr 1fr 1fr; */
   margin: 2vh 1vw 2vh 1vw;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.347);
   border-radius: 6px;

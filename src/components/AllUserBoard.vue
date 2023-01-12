@@ -36,9 +36,6 @@ export default {
 </script>
 
 <style scoped>
-/* .all-users {
-} */
-
 .list {
   display: flex;
   flex-wrap: nowrap;

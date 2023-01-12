@@ -49,16 +49,7 @@ body {
 }
 
 #app {
-  /* font-family: Calistoga; */
-  /* font-family: DM Serif Display; */
-  /* font-family: Commissioner; */
-  /* font-family: Gowun Dodum; */
   font-family: Lexend;
-  /* font-family: RocknRoll One; */
-  /* font-family: Vollkorn; */
-  /* font-family: Wallpoet; */
-  /* font-family: Holtwood One SC; */
-  /* font-family: Lobster; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -68,6 +59,7 @@ body {
 
 .rd-logo {
   width: 80vw;
+  margin-top: 80px;
   padding-top: 8vh;
 }
 

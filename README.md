@@ -1,4 +1,5 @@
-# musicial_pursuit_front
+# RockDog Trivia Front End
+### (originally named "musicial_pursuit")
 
 RockDog Trivia is a music trivia app where Users can compete against other users in answering trivia questions about popular music of ver last 70 years.
 
@@ -6,6 +7,12 @@ Utilizing AudioDb API (https://www.theaudiodb.com/) to serve data about songs an
 
 A user can search other users and add other to their "watchlist" to watch their competition!  User can also send barks to their comepetitors(which are basically comments or tweets) as a way to foster healthy competition.
 
+To use: 
+- `npm i` to install dependencies
+- `npm start dev`
+
+
+#
 
 ![CHD](RockDogTrivia_CHD.png)
 ![ERD](RockDogTrivia_ERD.png)
