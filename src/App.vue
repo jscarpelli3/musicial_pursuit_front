@@ -59,6 +59,7 @@ body {
 
 .rd-logo {
   width: 80vw;
+  
   margin-top: 80px;
   padding-top: 8vh;
 }

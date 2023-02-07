@@ -89,6 +89,13 @@ img {
   align-self: flex-end;
 }
 
+img {
+  width: 8vw;
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
+}
+
 #nav-button {
   align-self: flex-end;
   margin-left: auto;
@@ -107,5 +114,14 @@ img {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+@media (width > 480px) {
+  img {
+    width: 2rem;
+    margin-right: 1vw;
+  }
+
+
 }
 </style>
