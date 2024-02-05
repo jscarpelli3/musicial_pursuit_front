@@ -77,7 +77,7 @@ export default {
   methods: {
     async getAlbums(e) {
       e.preventDefault();
-      const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
+      const res = await axios.get(`https://www.theaudiodb.com/api/v1/json/${API_KEY}/searchalbum.php?s=${this.searchQuery}`);
       if (res.data.album === null) {
         this.search_fail = true
       } else {
@@ -90,7 +90,7 @@ export default {
       this.searchQuery = event.target.value
     },
     async makeImagePath() {
-      const res = await axios.get(`https://theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
+      const res = await axios.get(`https://www.theaudiodb.com/api/v1/json/${API_KEY}/search.php?s=${this.searchQuery}`);
       this.artist_start_yr = res.data.artists[0].intFormedYear
       this.artist_image_src = res.data.artists[0].strArtistLogo
     },
